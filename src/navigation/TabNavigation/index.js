@@ -1,4 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { StyleSheet } from "react-native";
+import HomePage from "../../../pages/HomePage";
 
 const Tab = createBottomTabNavigator();
 
@@ -12,7 +14,7 @@ export function TabNavigator() {
           tabBarStyle: styles.tabBarStyles,
         }}
       >
-        <Tab.Screen name="Home" component={<></>} />
+        <Tab.Screen name="Home" component={HomePage} />
       </Tab.Navigator>
     </>
   );
