@@ -1,1 +1,1 @@
-export const base_URL = 'http://localhost:3001/api';
+export const base_URL = "https://skihub-server-production.up.railway.app/api/";

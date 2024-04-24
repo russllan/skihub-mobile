@@ -5,9 +5,17 @@ const Stack = createStackNavigator();
 
 export const StackNavigator = () => {
   return (
-    <Stack.Navigator initialRouteName="EnterFirst">
+    <Stack.Navigator initialRouteName="Root">
       <Stack.Screen
-        name="HomeScreen"
+        name="Root"
+        component={TabNavigator}
+        options={{
+          headerShown: false,
+          gestureEnabled: false,
+        }}
+      />
+      <Stack.Screen
+        name="Settings"
         component={TabNavigator}
         options={{
           headerShown: false,
