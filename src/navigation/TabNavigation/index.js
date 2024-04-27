@@ -1,6 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StyleSheet } from "react-native";
-import HomePage from "../../../pages/HomePage";
+import HomePage from "../../screens/Home/HomePage";
+import SignUp from "../../screens/SignUp";
 
 const Tab = createBottomTabNavigator();
 
@@ -15,6 +16,7 @@ export function TabNavigator() {
         }}
       >
         <Tab.Screen name="Home" component={HomePage} />
+        <Tab.Screen name="Settings" component={SignUp} />
       </Tab.Navigator>
     </>
   );

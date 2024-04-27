@@ -1,4 +1,4 @@
-import { StatusBar } from "expo-status-bar";
+import { StatusBar } from "react-native";
 import { StyleSheet } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
@@ -10,12 +10,12 @@ const queryClient = new QueryClient();
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <StatusBar style="auto" />
-      <NavigationContainer>
-        <StackNavigator />
-      </NavigationContainer>
-    </GestureHandlerRootView>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <StatusBar barStyle="light-content" hidden={false} translucent={true} />
+        <NavigationContainer>
+          <StackNavigator />
+        </NavigationContainer>
+      </GestureHandlerRootView>
     </QueryClientProvider>
   );
 }
