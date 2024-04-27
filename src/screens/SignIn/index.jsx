@@ -1,17 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, StyleSheet, Image, Dimensions, TouchableOpacity, Text, TextInput } from "react-native";
 import useAuth from '../../hooks/useAuth';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native';
 
-function SignUp() {
 
-    const { SignOut, SignUp, isError } = useAuth()
+function SignIn() {
+
+    const { checkAuth, SignIn, SignOut, isLoading, isError } = useAuth();
+
+    const navigation = useNavigation()
 
     const [phoneNumber, setphoneNumber] = useState("");
     const [password, setPassword] = useState("");
 
-
-    const { width, height } = Dimensions.get('window');
+    useEffect(() => {
+        checkAuth();
+    }, []);
 
     const USER = {
         phoneNumber: phoneNumber,
@@ -21,10 +27,16 @@ function SignUp() {
     }
 
     const onSubmit = async (data) => {
-        const res = await SignUp(data)
+        const res = await SignIn(data)
         return res
     }
 
+
+    const onRedirect = () => {
+        navigation.navigate("SignUp")
+    }
+
+    const { width, height } = Dimensions.get('window');
 
     return (
         <View style={[{ height: height, backgroundColor: '#222', position: "relative" }]}>
@@ -32,16 +44,16 @@ function SignUp() {
             <View style={[styles.footer, { bottom: "20%" }]}>
                 <View style={styles.wrapper}>
                     <Text style={styles.title}>
-                        {isError ? "Error" : "Sign Up"}
+                        {isError ? "Error" : "Sign In"}
                     </Text>
                     <TextInput onChangeText={setphoneNumber} style={styles.input} placeholder='Enter Your Phone Number' />
                     <TextInput onChangeText={setPassword} style={styles.input} placeholder='Enter Password' />
 
                     <TouchableOpacity onPress={() => onSubmit(USER)} style={[styles.footerBtn, { backgroundColor: "white" }]}>
-                        <Text style={styles.footerBtnText}>Register</Text>
+                        <Text style={styles.footerBtnText}>Войти</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => SignOut()} style={[styles.footerBtn, { backgroundColor: "#222", borderColor: "white", borderWidth: 1 }]}>
-                        <Text style={[styles.footerBtnText, { color: "white" }]}>Sign Uot</Text>
+                    <TouchableOpacity onPress={() => onRedirect()} style={[styles.footerBtn, { backgroundColor: "#222", borderColor: "white", borderWidth: 1 }]}>
+                        <Text style={[styles.footerBtnText, { color: "white" }]}>Зарегистрироваться</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -97,4 +109,4 @@ const styles = StyleSheet.create({
 })
 
 
-export default SignUp
+export default SignIn
