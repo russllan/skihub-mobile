@@ -5,13 +5,19 @@ import { NavigationContainer } from "@react-navigation/native";
 import { StackNavigator } from "./src/navigation";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false
+    }
+  }
+});
 
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <GestureHandlerRootView style={{ flex: 1 }}>
-        <StatusBar barStyle="light-content" hidden={false} translucent={true} />
+        <StatusBar backgroundColor='transparent' hidden={false} translucent={true} />
         <NavigationContainer>
           <StackNavigator />
         </NavigationContainer>

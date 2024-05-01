@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import AuthService from "../../services/auth.service";
+import AuthService from "../services/auth.service";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import $api from "../../services";
+import $api from "../services";
 
 const useAuth = () => {
   const [isLoading, setLoading] = useState(false);
@@ -31,7 +31,7 @@ const useAuth = () => {
   const SignUp = async (data) => {
     try {
       setLoading(true);
-      const res = await $api.post("user/create", { ...data });
+      const res = await $api.post("/user/create", { ...data });
       await AsyncStorage.setItem("key", res.data.token);
       navigation.navigate("Root");
       setError(false);

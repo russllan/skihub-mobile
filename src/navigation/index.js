@@ -14,6 +14,7 @@ const AuthNavigator = () => {
         options={{
           headerShown: false,
           gestureEnabled: false,
+          headerBackground: false
         }}
       />
       <Stack.Screen
