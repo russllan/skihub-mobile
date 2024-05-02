@@ -25,6 +25,14 @@ const AuthNavigator = () => {
           gestureEnabled: false,
         }}
       />
+       <Stack.Screen
+        name="cardDetails"
+        component={SignUp}
+        options={{
+          headerShown: false,
+          gestureEnabled: false,
+        }}
+      />
     </Stack.Navigator>
   );
 };

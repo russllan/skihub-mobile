@@ -4,15 +4,16 @@ import {
   View,
   Text,
   StyleSheet,
-  Image,
-  StatusBar,
   TextInput,
   ImageBackground,
+  FlatList,
 } from "react-native";
-import BaseCard from "../../components/basesCard/BasesCard";
 import { gStyles } from "../../../styles/gStyle";
+import { useBases } from "../../hooks/useBases";
+import BaseCard from "../../components/basesCard/BasesCard";
 
 export default HomePage = () => {
+  const { isPending, data } = useBases();
   const [tken, setTken] = useState("");
 
   const getId = async () => {
@@ -57,8 +58,18 @@ export default HomePage = () => {
       </View>
       <View style={styles.bottom}>
         <View style={gStyles.container}>
-          {/* <Text>{tken}</Text> */}
-          <BaseCard />
+          {isPending ? (
+            <Text>...Loading</Text>
+          ) : (
+            <FlatList
+              data={data}
+              horizontal
+              pagingEnabled
+              showsHorizontalScrollIndicator={false}
+              keyExtractor={(item) => item.id.toString()}
+              renderItem={({ item }) => <BaseCard data={item} />}
+            />
+          )}
         </View>
       </View>
     </View>
@@ -77,5 +88,21 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     backgroundColor: "#fff",
     position: "relative",
+  },
+  container: {
+    width: "100%",
+    display: "flex",
+  },
+  wrapper: {
+    // flex: 1,
+    // width: "10%",
+    // display: "flex",
+    // flexWrap: 'wrap',
+    // flexDirection: 'column'
+  },
+  text: {
+    color: "#fff",
+    fontSize: 30,
+    fontWeight: "bold",
   },
 });
