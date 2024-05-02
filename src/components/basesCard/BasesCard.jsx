@@ -1,25 +1,29 @@
-import { StyleSheet, View, Text } from "react-native";
-import { useEffect, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import baseService from "../../services/base.service";
-import { base_URL } from "../../services";
-import { useBases } from "../../hooks/useBases";
+import { useNavigation } from "@react-navigation/native";
+import { StyleSheet, View, Text, Image } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
-export default BasesCard = () => {
-    const {isPending, data} = useBases();
-
-  if (isPending) return <Text>...Loading</Text>;
-//   if (data) {
-//     console.log(data);
-//     return (<Text>DATA!!!!!!!!!!!!!!!!!!!!!!!!</Text>)
-//   }
-  console.log(data);
-
+export default BasesCard = ({ data }) => {
+  const navigation = useNavigation()
+  const onClick = () => {
+    navigation.navigate('cardDetails', {baseId: data.id})
+  };
   return (
-    <View className={styles.basesCard}>
-      <View className={styles.Card}>
-        <View>
-          <Text>{data[0].address}</Text>
+    <View style={styles.slide}>
+      <View style={styles.card}>
+        <View style={{ paddingTop: 40 }}>
+          <TouchableOpacity onPress={onClick}>
+            <Image
+              source={{
+                uri: "https://cdn.dribbble.com/userupload/7667073/file/original-4488ef7ede3f97ca753e450973309c27.png?resize=400x300&vertical=center",
+              }}
+              style={styles.cardImage}
+            />
+          </TouchableOpacity>
+        </View>
+        <View style={{ paddingVertical: 10 }}>
+          <Text>{data.title}</Text>
+          <Text>{data.address}</Text>
+          {/* <Text>{data.reviews.rating}</Text> */}
         </View>
       </View>
     </View>
@@ -27,8 +31,26 @@ export default BasesCard = () => {
 };
 
 const styles = StyleSheet.create({
-  basesCard: {
-    flex: 1,
-    backgroundColor: "red",
+  slide: {
+    justifyContent: "flex-start",
+    paddingHorizontal: 10,
+    alignItems: "center",
+  },
+  card: {
+    height: 370,
+    // backgroundColor: "red",
+  },
+  cardImage: {
+    width: 200,
+    height: 200,
+    borderRadius: 10,
+  },
+  wrapper: {
+    display: "flex",
+  },
+  text: {
+    color: "#fff",
+    fontSize: 30,
+    fontWeight: "bold",
   },
 });
