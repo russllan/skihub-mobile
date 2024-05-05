@@ -10,7 +10,8 @@ export const useBases = () => {
 
 export const useOneBase = (id) => {
   return useQuery({
-    queryKey: ['base', id],
-    queryFn: baseService.getOne(id),
+    queryKey: ['oneBase', id],
+    queryFn: async () => baseService.getOne(id),
+    enabled: !!id
   })
 }

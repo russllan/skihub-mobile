@@ -3,9 +3,9 @@ import { StyleSheet, View, Text, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default BasesCard = ({ data }) => {
-  const navigation = useNavigation()
+  const navigation = useNavigation();
   const onClick = () => {
-    navigation.navigate('cardDetails', {baseId: data.id})
+    navigation.navigate("baseDetails", { baseId: data.id });
   };
   return (
     <View style={styles.slide}>
