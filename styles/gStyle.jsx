@@ -2,7 +2,8 @@ import { StyleSheet } from "react-native";
 
 export const gStyles = StyleSheet.create({
   screen: {
-    flex: 1,
+    width: "100%", 
+    height: "100%",
     // marginTop: 20,
   },
   container: {
@@ -18,5 +19,10 @@ export const gStyles = StyleSheet.create({
     borderWidth: 1,
     color: '#222',
     backgroundColor: "silver",
+  },
+  btn: {
+    backgroundColor: 'silver',
+    padding: 15,
+    borderRadius: 10,
   },
 });

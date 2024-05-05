@@ -2,6 +2,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { TabNavigator } from "./TabNavigation";
 import SignIn from "../screens/SignIn";
 import SignUp from "../screens/SignUp";
+import BaseDetails from "../screens/baseDetails/BaseDetails";
+import HomePage from "../screens/Home/HomePage";
 
 const Stack = createStackNavigator();
 
@@ -26,8 +28,8 @@ const AuthNavigator = () => {
         }}
       />
        <Stack.Screen
-        name="cardDetails"
-        component={SignUp}
+        name="baseDetails"
+        component={BaseDetails}
         options={{
           headerShown: false,
           gestureEnabled: false,
