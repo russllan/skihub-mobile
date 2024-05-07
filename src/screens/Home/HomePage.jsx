@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
   View,
   Text,
@@ -14,12 +14,10 @@ import { useBases } from "../../hooks/useBases";
 import BaseCard from "../../components/basesCard/BasesCard";
 import TourCard from "../../components/tourCard/TourCard";
 import { useTour } from "../../hooks/useTour";
-import { getTokenFromLocalStorage } from "../../hooks/localStorage.helper";
 
 export default HomePage = () => {
   const { isPending, data } = useBases();
   const tour = useTour();
-  const [tken, setTken] = useState("");
 
   const getId = async () => {
     const res = await AsyncStorage.getItem("key");
@@ -31,8 +29,6 @@ export default HomePage = () => {
   }, []);
 
   console.log(tour);
-  const token = getTokenFromLocalStorage();
-  console.log(token);
 
   return (
     <ScrollView style={gStyles.screen}>

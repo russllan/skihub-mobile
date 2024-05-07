@@ -4,26 +4,6 @@ import { getTokenFromLocalStorage } from "../hooks/localStorage.helper";
 export const base_URL = "https://skihub-server-production.up.railway.app/api";
 // export const base_URL = "http://localhost:3000/api";
 
-// const $api = axios.create({
-//   baseURL: base_URL,
-//   withCredentials: false,
-//   headers: {
-//     Authorization: `Bearer ${getTokenFromLocalStorage() || ''}`,
-//   }
-// });
-
-// const createAxiosInstance = async () => {
-//   const token = await getTokenFromLocalStorage();
-//   const $api = axios.create({
-//     baseURL: base_URL,
-//     withCredentials: false,
-//     headers: {
-//       Authorization: `Bearer ${token || ''}`,
-//     }
-//   })
-//   return $api;
-// }
-
 const $api = axios.create({
   baseURL: base_URL,
   withCredentials: false,
@@ -48,4 +28,3 @@ $api.interceptors.request.use(
 )
 
 export default $api;
-// export default createAxiosInstance();
