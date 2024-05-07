@@ -7,13 +7,18 @@ import {
   TextInput,
   ImageBackground,
   FlatList,
+  ScrollView,
 } from "react-native";
 import { gStyles } from "../../../styles/gStyle";
 import { useBases } from "../../hooks/useBases";
 import BaseCard from "../../components/basesCard/BasesCard";
+import TourCard from "../../components/tourCard/TourCard";
+import { useTour } from "../../hooks/useTour";
+import { getTokenFromLocalStorage } from "../../hooks/localStorage.helper";
 
 export default HomePage = () => {
   const { isPending, data } = useBases();
+  const tour = useTour();
   const [tken, setTken] = useState("");
 
   const getId = async () => {
@@ -25,8 +30,12 @@ export default HomePage = () => {
     getId();
   }, []);
 
+  console.log(tour);
+  const token = getTokenFromLocalStorage();
+  console.log(token);
+
   return (
-    <View style={gStyles.screen}>
+    <ScrollView style={gStyles.screen}>
       <View style={styles.top}>
         <ImageBackground
           source={{
@@ -70,9 +79,14 @@ export default HomePage = () => {
               renderItem={({ item }) => <BaseCard data={item} />}
             />
           )}
+          <View style={styles.tourView}>
+            <TourCard />
+            <TourCard />
+            <TourCard />
+          </View>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -84,7 +98,7 @@ const styles = StyleSheet.create({
   bottom: {
     width: "100%",
     height: "75%",
-    top: 10,
+    top: -120,
     borderRadius: 50,
     backgroundColor: "#fff",
     position: "relative",
@@ -93,16 +107,18 @@ const styles = StyleSheet.create({
     width: "100%",
     display: "flex",
   },
-  wrapper: {
-    // flex: 1,
-    // width: "10%",
-    // display: "flex",
-    // flexWrap: 'wrap',
-    // flexDirection: 'column'
-  },
+  wrapper: {},
   text: {
     color: "#fff",
     fontSize: 30,
     fontWeight: "bold",
+  },
+  tourView: {
+    width: '100%',
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 15,
   },
 });
