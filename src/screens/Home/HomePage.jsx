@@ -17,19 +17,11 @@ import { useTour } from "../../hooks/useTour";
 
 export default HomePage = () => {
   const { isPending, data } = useBases();
-  const tour = useTour();
-
-  const getId = async () => {
-    const res = await AsyncStorage.getItem("key");
-    setTken(res);
-  };
-
-  useEffect(() => {
-    getId();
-  }, []);
-
-  console.log(tour);
-
+  const {
+    isLoading: tourIsLoading,
+    isError: tourIsError,
+    data: tourData,
+  } = useTour();
   return (
     <ScrollView style={gStyles.screen}>
       <View style={styles.top}>
@@ -63,6 +55,7 @@ export default HomePage = () => {
       </View>
       <View style={styles.bottom}>
         <View style={gStyles.container}>
+          <Text style={gStyles.titleText}>Горнолыжные базы</Text>
           {isPending ? (
             <Text>...Loading</Text>
           ) : (
@@ -76,9 +69,22 @@ export default HomePage = () => {
             />
           )}
           <View style={styles.tourView}>
-            <TourCard />
-            <TourCard />
-            <TourCard />
+            <Text style={gStyles.titleText}>Tours</Text>
+            {tourIsError && <Text>Error fetching tours</Text>}
+            {tourIsLoading ? (
+              <Text>...Loading Tours</Text>
+            ) : (
+              tourData && (
+                <FlatList
+                  data={tourData}
+                  horizontal
+                  pagingEnabled
+                  showsHorizontalScrollIndicator={false}
+                  keyExtractor={(item) => item.id.toString()}
+                  renderItem={({ item }) => <TourCard tour={item} />}
+                />
+              )
+            )}
           </View>
         </View>
       </View>
@@ -93,9 +99,12 @@ const styles = StyleSheet.create({
   },
   bottom: {
     width: "100%",
-    height: "75%",
-    top: -120,
-    borderRadius: 50,
+    height: "100%",
+    flex: 1,
+    borderTopLeftRadius: 50,
+    borderTopRightRadius: 50,
+    borderBottomLeftRadius: 0,
+    borderBottomRightRadius: 0,
     backgroundColor: "#fff",
     position: "relative",
   },
@@ -110,11 +119,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   tourView: {
-    width: '100%',
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: 15,
+    width: "100%",
+    display: "flex",
+    gap: 18,
   },
 });

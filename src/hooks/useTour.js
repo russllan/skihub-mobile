@@ -7,3 +7,11 @@ export const useTour = () => {
     queryFn: async () => tourService.getAll()
   });
 };
+
+export const useOneTour = (id) => {
+  return useQuery({
+    queryKey: ["tour", id],
+    queryFn: async () => tourService.getOne(id),
+    enabled: !!id
+  })
+}
