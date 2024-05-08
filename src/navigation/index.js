@@ -3,7 +3,7 @@ import { TabNavigator } from "./TabNavigation";
 import SignIn from "../screens/SignIn";
 import SignUp from "../screens/SignUp";
 import BaseDetails from "../screens/baseDetails/BaseDetails";
-import HomePage from "../screens/Home/HomePage";
+import TourDetails from "../screens/tourDetails/TourDetails";
 
 const Stack = createStackNavigator();
 
@@ -30,6 +30,14 @@ const AuthNavigator = () => {
        <Stack.Screen
         name="baseDetails"
         component={BaseDetails}
+        options={{
+          headerShown: false,
+          gestureEnabled: false,
+        }}
+      />
+      <Stack.Screen
+        name="tourDetails"
+        component={TourDetails}
         options={{
           headerShown: false,
           gestureEnabled: false,

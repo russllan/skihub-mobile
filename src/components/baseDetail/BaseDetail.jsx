@@ -11,27 +11,15 @@ import { gStyles } from "../../../styles/gStyle";
 import { ScrollView } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 import { useProduct } from "../../hooks/useProduct";
-import { base_URL } from "../../services";
-// import { Icon } from "react-native-vector-icons/Icon";
+import ArrowLeft from "../arrowLeft/ArrowLeft";
 
 export default BaseDetail = ({ dataBase }) => {
   const navigation = useNavigation();
   const onShow = () => {
     navigation.navigate("product", { baseId: dataBase.id });
   };
-
   // const { isPending, data } = useProduct();
-  async function get() {
-  const response = await fetch(`${base_URL}/products`);
-  if (!response.ok) {
-    throw new Error('Failed to fetch products');
-  }
-  const data = await response.json();
-  console.log(data);
-  return data;
-}
 
-  get();
   return (
     <View style={gStyles.screen}>
       <View style={{ width: "100%", height: 350 }}>
@@ -45,7 +33,7 @@ export default BaseDetail = ({ dataBase }) => {
             <TouchableOpacity
               onPress={() => navigation.navigate("Root", { screen: "Profile" })}
             >
-              <Text style={styles.minText}>Назад</Text>
+              <ArrowLeft name="arrowleft" size={32} color="black" />
             </TouchableOpacity>
             <Text style={styles.mainText}>{dataBase.title}</Text>
             <Text style={styles.minText}>{dataBase.address}</Text>
