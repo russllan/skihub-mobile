@@ -2,6 +2,9 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StyleSheet } from "react-native";
 import HomePage from "../../screens/Home/HomePage";
 import SignUp from "../../screens/SignUp";
+import { AntDesign } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
+import { Fontisto } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
 
@@ -13,10 +16,61 @@ export function TabNavigator() {
         screenOptions={{
           headerShown: false,
           tabBarStyle: styles.tabBarStyles,
+          tabBarActiveTintColor: '#C05E2B',
         }}
       >
-        <Tab.Screen name="Home" component={HomePage} />
-        <Tab.Screen name="Settings" component={SignUp} />
+        <Tab.Screen
+          name="Главная"
+          component={HomePage}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <AntDesign
+                name="home"
+                size={24}
+                color={focused ? "#C05E2B" : "black"}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Снаряжение"
+          component={HomePage}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <FontAwesome5
+                name="skiing"
+                size={24}
+                color={focused ? "#C05E2B" : "black"}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Корзина"
+          component={HomePage}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <Fontisto
+                name="heart-alt"
+                size={24}
+                color={focused ? "#C05E2B" : "black"}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Профиль"
+          component={SignUp}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <FontAwesome5
+                name="user"
+                size={24}
+                color={focused ? "#C05E2B" : "black"}
+              />
+            ),
+          }}
+        />
       </Tab.Navigator>
     </>
   );
@@ -35,6 +89,7 @@ export const styles = StyleSheet.create({
     position: "absolute",
     borderTopColor: "#222",
     paddingTop: 5,
+    paddingBottom: 10,
     zIndex: 0,
   },
 });

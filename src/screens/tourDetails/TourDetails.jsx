@@ -15,7 +15,7 @@ export default TourDetails = () => {
   return (
     <View style={styles.tour}>
       <View style={styles.top}>
-        <TourDetail />
+        <TourDetail data={data}/>
       </View>
       <View style={styles.bottom}></View>
     </View>
