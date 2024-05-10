@@ -2,6 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StyleSheet } from "react-native";
 import HomePage from "../../screens/Home/HomePage";
 import SignUp from "../../screens/SignUp";
+import Equipment from "../../screens/equipment/Index";
 import { AntDesign } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Fontisto } from '@expo/vector-icons';
@@ -34,7 +35,7 @@ export function TabNavigator() {
         />
         <Tab.Screen
           name="Снаряжение"
-          component={HomePage}
+          component={Equipment}
           options={{
             tabBarIcon: ({ focused }) => (
               <FontAwesome5

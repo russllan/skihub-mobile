@@ -29,5 +29,12 @@ export const gStyles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "600",
     padding: 10
-  }
+  },
+  orangeText: {
+    color: "#C05E2B",
+    fontWeight: "900",
+  },
+  opacityText: {
+    opacity: 0.4
+  },
 });
