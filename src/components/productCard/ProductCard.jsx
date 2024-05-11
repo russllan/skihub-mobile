@@ -21,17 +21,17 @@ export default ProductCard = ({ item }) => {
           <EvilIcons
             name="heart"
             size={30}
-            color="black"
+            color="#C05E2B"
             style={styles.heart}
-            onPress={() => setLike(!like)}
+            onPress={() => setLike(false)}
           />
         ) : (
           <EvilIcons
             name="heart"
             size={30}
-            color="#C05E2B"
+            color="black"
             style={styles.heart}
-            onPress={() => setLike(!like)}
+            onPress={() => setLike(true)}
           />
         )}
       </View>
