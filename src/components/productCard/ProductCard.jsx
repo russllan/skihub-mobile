@@ -1,12 +1,71 @@
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { EvilIcons } from "@expo/vector-icons";
 import { useState } from "react";
 import { gStyles } from "../../../styles/gStyle";
+import { useNavigation } from "@react-navigation/native";
+import CustomModal from "../modal/Modal";
+import { useOneProduct } from "../../hooks/useProduct";
 
 export default ProductCard = ({ item }) => {
   const [like, setLike] = useState(false);
+  const [active, setActive] = useState(false);
+  const { isPending, data } = useOneProduct(item.id);
+  const navigation = useNavigation();
   return (
-    <View style={styles.card}>
+    <TouchableOpacity style={styles.card} onPress={() => setActive(true)}>
+      <CustomModal
+        isModal={active}
+        setModal={setActive}
+        height={480}
+        width={320}
+      >
+        <View style={styles.productDetail}>
+          {isPending && <Text>...Loading</Text>}
+          <View>
+            <Image
+              source={{ uri: data?.image }}
+              style={{ width: 300, height: 100 }}
+            />
+          </View>
+          <View>
+            <Text>Название: {data?.title}</Text>
+          </View>
+          <View>
+            <Text>Количество: {data?.amount} шт.</Text>
+          </View>
+          <View>
+            <Text>Стоимость: {data?.cost}/сом</Text>
+          </View>
+          {data?.type === "Одежда" && (
+            <View
+              style={{
+                gap: 20,
+                flexDirection: "row",
+                flexWrap: "wrap",
+                justifyContent: "space-between",
+              }}
+            >
+              <Text>Размер: {data?.size}</Text>
+              <Text>Рост: {data?.height}</Text>
+              <Text>Вес: {data?.weight}</Text>
+              <Text>Цвет: {data?.color}</Text>
+              <Text>Пол: {data?.gender}</Text>
+            </View>
+          )}
+          {/* <View>
+            <Text>База: {data?.base}</Text>
+          </View> */}
+          <View>
+            <Text>{data?.text}</Text>
+          </View>
+          <View>
+            <Text>Статус: {data?.status}</Text>
+          </View>
+          <TouchableOpacity style={gStyles.btn}>
+            <Text>Забронировать</Text>
+          </TouchableOpacity>
+        </View>
+      </CustomModal>
       <View>
         <Image
           source={{
@@ -51,7 +110,7 @@ export default ProductCard = ({ item }) => {
           </Text>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -59,6 +118,11 @@ const styles = StyleSheet.create({
   card: {
     width: 220,
     height: 290,
+  },
+  productDetail: {
+    flex: 1,
+    flexDirection: "column",
+    gap: 25,
   },
   img: {
     width: "100%",

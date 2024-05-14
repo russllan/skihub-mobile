@@ -7,3 +7,11 @@ export const useProduct = () => {
     queryFn: productService.getAll,
   });
 };
+
+export const useOneProduct = (id) => {
+  return useQuery({
+    queryKey: ["product", id],
+    queryFn: async () => productService.getOne(id),
+    enabled: !!id
+  })
+}

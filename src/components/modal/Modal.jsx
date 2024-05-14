@@ -2,7 +2,13 @@ import React from "react";
 import { Button, Modal, StyleSheet, View } from "react-native";
 import { EvilIcons } from "@expo/vector-icons";
 
-const CustomModal = ({ isModal, setModal, children }) => {
+const CustomModal = ({
+  isModal,
+  setModal,
+  children,
+  width = 250,
+  height = 30,
+}) => {
   return (
     <Modal
       visible={isModal}
@@ -12,7 +18,7 @@ const CustomModal = ({ isModal, setModal, children }) => {
     >
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
-          <View style={{width: 250, height: 30, alignItems: 'flex-end'}}>
+          <View style={{ width: width, height: 35, alignItems: "flex-end" }}>
             <EvilIcons
               name="close"
               size={24}
@@ -20,7 +26,9 @@ const CustomModal = ({ isModal, setModal, children }) => {
               onPress={() => setModal(false)}
             />
           </View>
-          <View style={{width: 250, height: 100, justifyContent: 'center'}}>{children}</View>
+          <View style={{ width: width, height: height, justifyContent: "center", alignItems: "center" }}>
+            {children}
+          </View>
         </View>
       </View>
     </Modal>

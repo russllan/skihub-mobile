@@ -19,7 +19,7 @@ export default FilteredCard = () => {
   const [filteredData, setFilteredData] = useState(filteredBases);
 
   const handleBaseFilter = (title) => {
-    console.log(title);
+    // console.log(title);
     setFiltereBases(data.filter((item) => item.base.title === title));
   };
 
