@@ -16,7 +16,7 @@ class ProductService {
   }
 
   async getOne(id) {
-    const response = await $api.get(`${base_URL}/product/${id}`);
+    const response = await $api.get(`/product/${id}`);
     return response.data;
   }
 }
