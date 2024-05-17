@@ -2,15 +2,27 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { EvilIcons } from "@expo/vector-icons";
 import { useState } from "react";
 import { gStyles } from "../../../styles/gStyle";
-import { useNavigation } from "@react-navigation/native";
 import CustomModal from "../modal/Modal";
 import { useOneProduct } from "../../hooks/useProduct";
+import { useLikedProduct } from "../../hooks/useBasket";
 
 export default ProductCard = ({ item }) => {
-  const [like, setLike] = useState(false);
+  const [like, setLike] = useState(item?.isBooked)
   const [active, setActive] = useState(false);
   const { isPending, data } = useOneProduct(item.id);
-  const navigation = useNavigation();
+
+  const { mutate } = useLikedProduct();
+
+  const addBasket = () => {
+    mutate({ id: item?.id, data: { isBooked: true } });
+    setLike(true)
+  };
+
+  const removeBasket = () => {
+    mutate({ id: item?.id, data: { isBooked: false } });
+    setLike(false)
+  };
+
   return (
     <TouchableOpacity style={styles.card} onPress={() => setActive(true)}>
       <CustomModal
@@ -82,7 +94,7 @@ export default ProductCard = ({ item }) => {
             size={30}
             color="#C05E2B"
             style={styles.heart}
-            onPress={() => setLike(false)}
+            onPress={removeBasket}
           />
         ) : (
           <EvilIcons
@@ -90,7 +102,7 @@ export default ProductCard = ({ item }) => {
             size={30}
             color="black"
             style={styles.heart}
-            onPress={() => setLike(true)}
+            onPress={addBasket}
           />
         )}
       </View>

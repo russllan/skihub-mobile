@@ -19,6 +19,11 @@ class ProductService {
     const response = await $api.get(`/product/${id}`);
     return response.data;
   }
+
+  async update(id, data) {
+    const response = await $api.patch(`/product/${id}`, data);
+    return response.data;
+  }
 }
 
 export default new ProductService();
