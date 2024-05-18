@@ -14,14 +14,13 @@ export default Basket = () => {
   return (
     <View style={styles.basketPage}>
       <View style={styles.container}>
-        <Text>Hello basket screen!</Text>
         <ScrollView style={styles.product}>
           {isPending ? (
             <Text>...Loading</Text>
           ) : (
             data
               ?.filter((item) => item.isBooked === true)
-              .map((item) => <ProductCard item={item} />)
+              .map((item) => <ProductCard key={item.id} item={item} />)
           )}
         </ScrollView>
         <View>

@@ -4,6 +4,7 @@ import HomePage from "../../screens/Home/HomePage";
 import SignUp from "../../screens/SignUp";
 import Equipment from "../../screens/equipment/Index";
 import Basket from "../../screens/basket/Index";
+import Profile from "../../screens/profile/Index";
 import { AntDesign } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Fontisto } from '@expo/vector-icons';
@@ -62,7 +63,7 @@ export function TabNavigator() {
         />
         <Tab.Screen
           name="Профиль"
-          component={SignUp}
+          component={Profile}
           options={{
             tabBarIcon: ({ focused }) => (
               <FontAwesome5
@@ -80,7 +81,7 @@ export function TabNavigator() {
 
 export const styles = StyleSheet.create({
   tabBarStyles: {
-    backgroundColor: "#222",
+    backgroundColor: "black",
     borderTopEndRadius: 24,
     borderTopStartRadius: 24,
     height: 80,
