@@ -14,7 +14,6 @@ export default Options = () => {
   const logout = () => {
     navigation.navigate("SignIn");
     removeTokenFromLocalStorage();
-
   };
   return (
     <View style={styles.options}>
@@ -42,7 +41,10 @@ export default Options = () => {
         </View>
         <MaterialIcons name="arrow-forward-ios" size={20} color="black" />
       </TouchableOpacity>
-      <TouchableOpacity style={styles.touch}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("userEdit")}
+        style={styles.touch}
+      >
         <View style={styles.touchView}>
           <FontAwesome5
             name="user"

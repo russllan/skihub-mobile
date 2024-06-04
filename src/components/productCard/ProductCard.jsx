@@ -5,22 +5,80 @@ import { gStyles } from "../../../styles/gStyle";
 import CustomModal from "../modal/Modal";
 import { useOneProduct } from "../../hooks/useProduct";
 import { useLikedProduct } from "../../hooks/useBasket";
+import { useMutation } from "@tanstack/react-query";
+import bookedProductService from "../../services/bookedProduct";
 
 export default ProductCard = ({ item }) => {
-  const [like, setLike] = useState(item?.isBooked)
+  const [like, setLike] = useState(item?.isBooked);
   const [active, setActive] = useState(false);
   const { isPending, data } = useOneProduct(item.id);
+  const [isLoading, setIsLoading] = useState(false);
+  // payment
+  const [payKey, setPayKey] = useState("");
+  const [isPayment, setIsPayment] = useState(false);
+  // payment2
 
-  const { mutate } = useLikedProduct();
+  const bookedProduct = useMutation({
+    mutationKey: ["booked-product"],
+    mutationFn: async ({ data }) =>
+      await bookedProductService.createBookedProduct(data),
+  });
 
-  const addBasket = () => {
-    mutate({ id: item?.id, data: { isBooked: true } });
-    setLike(true)
+  // console.log(bookedProduct.mutateAsync);
+
+  const { mutateAsync } = useLikedProduct();
+
+  const addBasket = async () => {
+    const newData = {
+      isBooked: true,
+    };
+    const exist = await mutateAsync({
+      id: item?.id,
+      data: newData,
+    });
+    if (exist) {
+      setLike(true);
+    }
   };
 
-  const removeBasket = () => {
-    mutate({ id: item?.id, data: { isBooked: false } });
-    setLike(false)
+  const removeBasket = async () => {
+    const newData = {
+      isBooked: false,
+    };
+    const exist = await mutateAsync({
+      id: item?.id,
+      data: newData,
+    });
+    if (exist) {
+      setLike(false);
+    }
+  };
+
+  const onBookProduct = async () => {
+    setIsLoading(true);
+    const data = {
+      isRefund: false,
+      startDate: "2024-09-10",
+      endDate: "2024-10-12",
+      amount: 1,
+      product: item?.id,
+    };
+    try {
+      const res = await bookedProduct.mutateAsync({ data });
+      if (res) {
+        console.log(res);
+        setPayKey(res.paymentIntentClientSecret);
+        // onCheckout(res.paymentIntentClientSecret)
+        setIsLoading(false);
+      }
+      return res;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const onPayment = () => {
+    setIsPayment(true);
   };
 
   return (
@@ -64,17 +122,17 @@ export default ProductCard = ({ item }) => {
               <Text>Пол: {data?.gender}</Text>
             </View>
           )}
-          {/* <View>
-            <Text>База: {data?.base}</Text>
-          </View> */}
           <View>
             <Text>{data?.text}</Text>
           </View>
           <View>
             <Text>Статус: {data?.status}</Text>
           </View>
-          <TouchableOpacity style={gStyles.btn}>
-            <Text>Забронировать</Text>
+          <TouchableOpacity style={gStyles.btn} onPress={onBookProduct}>
+            <Text>{isLoading ? "Загрузка..." : "Забронировать"}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={gStyles.btn} onPress={onPayment}>
+            <Text>{"Оплатить"}</Text>
           </TouchableOpacity>
         </View>
       </CustomModal>
@@ -91,7 +149,7 @@ export default ProductCard = ({ item }) => {
         {like ? (
           <EvilIcons
             name="heart"
-            size={30}
+            size={40}
             color="#C05E2B"
             style={styles.heart}
             onPress={removeBasket}
@@ -99,8 +157,8 @@ export default ProductCard = ({ item }) => {
         ) : (
           <EvilIcons
             name="heart"
-            size={30}
-            color="black"
+            size={40}
+            color="white"
             style={styles.heart}
             onPress={addBasket}
           />
@@ -109,16 +167,18 @@ export default ProductCard = ({ item }) => {
       <View style={styles.content}>
         <View style={styles.viewContent}>
           <Text style={styles.hText}>{item?.title}</Text>
-          <Text>{item?.amount} — кол-во</Text>
+          <Text style={{ color: "#fff" }}>{item?.amount} — кол-во</Text>
         </View>
         <View style={styles.viewContent}>
           <View style={{ flexDirection: "row" }}>
-            <EvilIcons name="location" size={24} color="black" />
-            <Text style={gStyles.opacityText}>{item?.base.title}</Text>
+            <EvilIcons name="location" size={24} color="white" />
+            <Text style={gStyles.opacityText}>{item?.base?.title}</Text>
           </View>
           <Text style={gStyles.orangeText}>
             {item?.cost}
-            <Text style={{ color: "black", fontWeight: "300" }}>/сом</Text>
+            <Text style={{ color: "#fff", fontWeight: "300", fontSize: 20 }}>
+              /сом
+            </Text>
           </Text>
         </View>
       </View>
@@ -128,8 +188,10 @@ export default ProductCard = ({ item }) => {
 
 const styles = StyleSheet.create({
   card: {
-    width: 220,
-    height: 290,
+    width: 340, //210
+    height: 330,
+    borderRadius: 10,
+    backgroundColor: "#6A5ACD",
   },
   productDetail: {
     flex: 1,
@@ -139,16 +201,20 @@ const styles = StyleSheet.create({
   img: {
     width: "100%",
     height: 200,
-    borderRadius: 15,
+    borderTopRightRadius: 10,
+    borderTopLeftRadius: 10,
   },
   heart: {
     position: "absolute",
     top: 15,
-    left: 177,
+    right: 20,
   },
   content: {
     width: "100%",
-    paddingVertical: 10,
+    flexDirection: "column",
+    gap: 20,
+    paddingVertical: 20,
+    paddingHorizontal: 7,
   },
   viewContent: {
     width: "100%",
@@ -159,5 +225,6 @@ const styles = StyleSheet.create({
   hText: {
     fontSize: 20,
     fontWeight: "900",
+    color: "#fff",
   },
 });

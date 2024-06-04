@@ -3,7 +3,7 @@ export const dataFilter = [
     title: "Все",
   },
   {
-    title: "Аксессуары",
+    title: "Очки",
   },
   {
     title: "Одежда",

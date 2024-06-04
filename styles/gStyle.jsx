@@ -21,7 +21,7 @@ export const gStyles = StyleSheet.create({
     backgroundColor: "silver",
   },
   btn: {
-    backgroundColor: 'silver',
+    backgroundColor: '#6A5ACD	',
     padding: 15,
     borderRadius: 10,
   },
@@ -31,10 +31,12 @@ export const gStyles = StyleSheet.create({
     padding: 10
   },
   orangeText: {
+    fontSize: 20,
     color: "#C05E2B",
     fontWeight: "900",
   },
   opacityText: {
-    opacity: 0.4
+    opacity: 0.4,
+    color: '#fff',
   },
 });

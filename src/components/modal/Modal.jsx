@@ -26,7 +26,14 @@ const CustomModal = ({
               onPress={() => setModal(false)}
             />
           </View>
-          <View style={{ width: width, height: height, justifyContent: "center", alignItems: "center" }}>
+          <View
+            style={{
+              width: width,
+              height: height,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             {children}
           </View>
         </View>

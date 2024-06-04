@@ -28,7 +28,7 @@ export default Equipment = () => {
           </View>
         </View>
         <View style={styles.productCard}>
-            <FilteredCard />
+          <FilteredCard />
         </View>
       </View>
     </View>

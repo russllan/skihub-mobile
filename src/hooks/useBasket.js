@@ -6,7 +6,7 @@ export const useLikedProduct = () => {
 
   return useMutation({
     mutationKey: ['update product'],
-    mutationFn: async ({ id, data }) => await productService.update(id, data),
+    mutationFn: async (data) => await productService.update(data),
     onError: (error) => {
       console.log("error" + error);
     },
