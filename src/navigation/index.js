@@ -5,6 +5,7 @@ import SignUp from "../screens/SignUp";
 import BaseDetails from "../screens/baseDetails/BaseDetails";
 import TourDetails from "../screens/tourDetails/TourDetails";
 import UserEditPage from "../screens/userEdit/UserEditPage";
+import EquipmentBasePage from "../screens/equipmentBase/EquipmentBasePage"
 
 const Stack = createStackNavigator();
 
@@ -47,6 +48,14 @@ const AuthNavigator = () => {
       <Stack.Screen
         name="userEdit"
         component={UserEditPage}
+        options={{
+          headerShown: false,
+          gestureEnabled: false,
+        }}
+      />
+      <Stack.Screen
+        name="equipmentBase"
+        component={EquipmentBasePage}
         options={{
           headerShown: false,
           gestureEnabled: false,

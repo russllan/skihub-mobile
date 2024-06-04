@@ -20,8 +20,8 @@ class ProductService {
     return response.data;
   }
 
-  async update(id, data) {
-    const response = await $api.patch(`/product/${id}`, data);
+  async update(data) {
+    const response = await $api.put(`/product/${data.id}`, data.data);
     return response.data;
   }
 }

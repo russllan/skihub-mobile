@@ -1,10 +1,4 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { EvilIcons } from "@expo/vector-icons";
 import { useState } from "react";
 import { gStyles } from "../../../styles/gStyle";
@@ -32,16 +26,32 @@ export default ProductCard = ({ item }) => {
 
   // console.log(bookedProduct.mutateAsync);
 
-  const { mutate } = useLikedProduct();
+  const { mutateAsync } = useLikedProduct();
 
-  const addBasket = () => {
-    mutate({ id: item?.id, data: { isBooked: true } });
-    setLike(true);
+  const addBasket = async () => {
+    const newData = {
+      isBooked: true,
+    };
+    const exist = await mutateAsync({
+      id: item?.id,
+      data: newData,
+    });
+    if (exist) {
+      setLike(true);
+    }
   };
 
-  const removeBasket = () => {
-    mutate({ id: item?.id, data: { isBooked: false } });
-    setLike(false);
+  const removeBasket = async () => {
+    const newData = {
+      isBooked: false,
+    };
+    const exist = await mutateAsync({
+      id: item?.id,
+      data: newData,
+    });
+    if (exist) {
+      setLike(false);
+    }
   };
 
   const onBookProduct = async () => {

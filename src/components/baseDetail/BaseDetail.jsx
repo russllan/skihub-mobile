@@ -88,9 +88,7 @@ export default BaseDetail = ({ dataBase }) => {
             <Text>{`Всего снаряжений: ${dataBase?.productes?.length}`}</Text>
             <TouchableOpacity
               onPress={() =>
-                navigation.navigate("Root", {
-                  screen: "Снаряжение",
-                })
+                navigation.navigate("equipmentBase", {productes: dataBase?.productes})
               }
               style={styles.btn}
             >

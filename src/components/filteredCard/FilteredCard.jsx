@@ -16,7 +16,7 @@ import { ScrollView } from "react-native-gesture-handler";
 export default FilteredCard = () => {
   const { isPending, data } = useProduct();
   const bases = useBases();
-  const [filteredBases, setFiltereBases] = useState(data);
+  const [filteredBases, setFiltereBases] = useState(isPending ? null : data);
   const [filteredData, setFilteredData] = useState(filteredBases);
 
   const handleBaseFilter = (title) => {

@@ -1,14 +1,26 @@
-import { View } from 'react-native'
-import { TextInput } from 'react-native-gesture-handler'
+import { View, TextInput, StyleSheet, Text } from "react-native";
 
-function UserEditPage({}) {
+export default UserEditPage = () => {
   return (
-    <View>
-        <View>
-            <TextInput placeholder='Изменить имя' value/>
-        </View>
+    <View style={styles.view}>
+      <View style={styles.container}>
+        <Text>awdawd</Text>
+        <TextInput placeholder="Изменить имя" value />
+      </View>
     </View>
-  )
-}
+  );
+};
 
-export default UserEditPage
+const styles = StyleSheet.create({
+  view: {
+    paddingVertical: 40,
+    flex: 1,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  container: {
+    width: "95%",
+    height: "100%",
+  },
+});
