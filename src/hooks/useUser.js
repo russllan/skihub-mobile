@@ -4,6 +4,6 @@ import userService from "../services/user.service"
 export const useUserProfile = () => {
     return useQuery({
         queryKey: ["user"],
-        queryFn: async () => userService.getProfile(),
+        queryFn: async () => userService.getUser(),
     })
 }

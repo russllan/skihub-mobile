@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   ImageBackground,
-  Image,
   TouchableOpacity,
   View,
   Text,
@@ -10,17 +9,15 @@ import {
 import { gStyles } from "../../../styles/gStyle";
 import { ScrollView } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
-import { useProduct } from "../../hooks/useProduct";
 import ArrowLeft from "../arrowLeft/ArrowLeft";
 import { EvilIcons, FontAwesome } from "@expo/vector-icons";
 import ProductCard from "../productCard/ProductCard";
+import CustomModal from "../modal/Modal";
+import Reviews from "../reviewsCard/ReviewsCard";
 
 export default BaseDetail = ({ dataBase }) => {
+  const [isModal, setModal] = useState(false);
   const navigation = useNavigation();
-  const onShow = () => {
-    navigation.navigate("product", { baseId: dataBase.id });
-  };
-  // console.log(dataBase);
 
   return (
     <View style={gStyles.screen}>
@@ -52,14 +49,45 @@ export default BaseDetail = ({ dataBase }) => {
           <View>
             <Text style={styles.mainSubText}>{dataBase.title}</Text>
           </View>
-          <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
+          <TouchableOpacity
+            onPress={() => setModal(!isModal)}
+            style={{ flexDirection: "row", alignItems: "center", gap: 10 }}
+          >
             <View>
               <FontAwesome name="star-o" size={24} color="black" />
             </View>
             <View>
               <Text>{dataBase?.reviews[0]?.rating}</Text>
             </View>
-          </View>
+          </TouchableOpacity>
+          {isModal && (
+            <CustomModal
+              isModal={isModal}
+              setModal={setModal}
+              width={350}
+              height={400}
+            >
+              <View style={{ paddingVertical: 20 }}>
+                <TouchableOpacity
+                  style={styles.btn}
+                  onPress={() => {
+                    navigation.navigate("formReview", {
+                      bs: dataBase.id,
+                    });
+                  }}
+                >
+                  <Text style={{ textAlign: "center" }}>Оставить отзыв</Text>
+                </TouchableOpacity>
+              </View>
+              <ScrollView style={{ width: "100%", paddingVertical: 15 }}>
+                <View style={{ flexDirection: "column", gap: 20 }}>
+                  {dataBase?.reviews?.map((item) => (
+                    <Reviews key={item.id} item={item} />
+                  ))}
+                </View>
+              </ScrollView>
+            </CustomModal>
+          )}
         </View>
         <View
           style={{
@@ -88,7 +116,9 @@ export default BaseDetail = ({ dataBase }) => {
             <Text>{`Всего снаряжений: ${dataBase?.productes?.length}`}</Text>
             <TouchableOpacity
               onPress={() =>
-                navigation.navigate("equipmentBase", {productes: dataBase?.productes})
+                navigation.navigate("equipmentBase", {
+                  productes: dataBase?.productes,
+                })
               }
               style={styles.btn}
             >
