@@ -5,7 +5,8 @@ import SignUp from "../screens/SignUp";
 import BaseDetails from "../screens/baseDetails/BaseDetails";
 import TourDetails from "../screens/tourDetails/TourDetails";
 import UserEditPage from "../screens/userEdit/UserEditPage";
-import EquipmentBasePage from "../screens/equipmentBase/EquipmentBasePage"
+import EquipmentBasePage from "../screens/equipmentBase/EquipmentBasePage";
+import FormReview from "../screens/FormReview/FormReview";
 
 const Stack = createStackNavigator();
 
@@ -18,7 +19,7 @@ const AuthNavigator = () => {
         options={{
           headerShown: false,
           gestureEnabled: false,
-          headerBackground: false
+          headerBackground: false,
         }}
       />
       <Stack.Screen
@@ -29,7 +30,7 @@ const AuthNavigator = () => {
           gestureEnabled: false,
         }}
       />
-       <Stack.Screen
+      <Stack.Screen
         name="baseDetails"
         component={BaseDetails}
         options={{
@@ -56,6 +57,14 @@ const AuthNavigator = () => {
       <Stack.Screen
         name="equipmentBase"
         component={EquipmentBasePage}
+        options={{
+          headerShown: false,
+          gestureEnabled: false,
+        }}
+      />
+      <Stack.Screen
+        name="formReview"
+        component={FormReview}
         options={{
           headerShown: false,
           gestureEnabled: false,
