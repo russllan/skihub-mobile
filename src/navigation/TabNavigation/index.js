@@ -5,9 +5,8 @@ import SignUp from "../../screens/SignUp";
 import Equipment from "../../screens/equipment/Index";
 import Basket from "../../screens/basket/Index";
 import Profile from "../../screens/profile/Index";
-import { AntDesign } from "@expo/vector-icons";
-import { FontAwesome5 } from "@expo/vector-icons";
-import { Fontisto } from '@expo/vector-icons';
+import BookedProductPage from "../../screens/bookedProduct/BookedProductPage";
+import { AntDesign, FontAwesome5, Fontisto } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
 
@@ -19,7 +18,7 @@ export function TabNavigator() {
         screenOptions={{
           headerShown: false,
           tabBarStyle: styles.tabBarStyles,
-          tabBarActiveTintColor: '#C05E2B',
+          tabBarActiveTintColor: "#C05E2B",
         }}
       >
         <Tab.Screen
@@ -55,6 +54,19 @@ export function TabNavigator() {
             tabBarIcon: ({ focused }) => (
               <Fontisto
                 name="heart-alt"
+                size={24}
+                color={focused ? "#C05E2B" : "black"}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Бронь"
+          component={BookedProductPage}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <FontAwesome5
+                name="money-check"
                 size={24}
                 color={focused ? "#C05E2B" : "black"}
               />

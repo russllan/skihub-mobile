@@ -1,8 +1,8 @@
 import $api from ".";
 
-class BookedProduct {
+class BookedProductService {
     async getAll() {
-        const response = await $api.get(`/booked-product`);
+        const response = await $api.get(`/booked-product/adminGet`);
         return response.data;
     }
     async createBookedProduct(data) {
@@ -11,4 +11,4 @@ class BookedProduct {
     }
 }
 
-export default new BookedProduct();
+export default new BookedProductService();

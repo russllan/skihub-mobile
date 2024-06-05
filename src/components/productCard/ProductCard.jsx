@@ -6,7 +6,7 @@ import CustomModal from "../modal/Modal";
 import { useOneProduct } from "../../hooks/useProduct";
 import { useLikedProduct } from "../../hooks/useBasket";
 import { useMutation } from "@tanstack/react-query";
-import bookedProductService from "../../services/bookedProduct";
+import bookedProductService from "../../services/bookedProduct.service";
 
 export default ProductCard = ({ item }) => {
   const [like, setLike] = useState(item?.isBooked);
