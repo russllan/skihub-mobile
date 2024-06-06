@@ -1,11 +1,11 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-export default BookedProductCard = ({ item }) => {
+export default BookedProductCard = ({ item, amount }) => {
   return (
     <View style={styles.card}>
       <View style={styles.top}>
         <Text style={{ fontSize: 17, fontWeight: "900" }}>{item.title}</Text>
-        <Text>Количество: {item.amount}</Text>
+        <Text>Количество: {amount}</Text>
       </View>
       <View style={styles.img}>
         <Image
@@ -15,7 +15,7 @@ export default BookedProductCard = ({ item }) => {
       </View>
       <View style={styles.bottom}>
         <View style={styles.bottom}>
-          <Text>Стоимость: {item.cost}</Text>
+          <Text>Стоимость: {item.cost * amount}</Text>
         </View>
         <View style={styles.bottom}>
           <View><Text>Начало брони: {Date(item.startDate)}</Text></View>

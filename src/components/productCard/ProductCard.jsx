@@ -12,6 +12,7 @@ export default ProductCard = ({ item }) => {
   const [like, setLike] = useState(item?.isBooked);
   const [active, setActive] = useState(false);
   const { isPending, data } = useOneProduct(item.id);
+  const [amount, setAmount] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   // payment
   const [payKey, setPayKey] = useState("");
@@ -60,7 +61,7 @@ export default ProductCard = ({ item }) => {
       isRefund: false,
       startDate: "2024-09-10",
       endDate: "2024-10-12",
-      amount: 1,
+      amount: amount,
       product: item?.id,
     };
     try {
@@ -86,7 +87,7 @@ export default ProductCard = ({ item }) => {
       <CustomModal
         isModal={active}
         setModal={setActive}
-        height={480}
+        height={560}
         width={320}
       >
         <View style={styles.productDetail}>
@@ -101,10 +102,22 @@ export default ProductCard = ({ item }) => {
             <Text>Название: {data?.title}</Text>
           </View>
           <View>
-            <Text>Количество: {data?.amount} шт.</Text>
+            <TouchableOpacity
+              style={styles.btnAmount}
+              onPress={() => setAmount((prev) => prev - 1)}
+            >
+              <Text style={{ textAlign: "center" }}>—</Text>
+            </TouchableOpacity>
+            <Text>Количество: {amount} шт.</Text>
+            <TouchableOpacity
+              style={styles.btnAmount}
+              onPress={() => setAmount((prev) => prev + 1)}
+            >
+              <Text style={{ textAlign: "center" }}>+</Text>
+            </TouchableOpacity>
           </View>
           <View>
-            <Text>Стоимость: {data?.cost}/сом</Text>
+            <Text>Стоимость: {data?.cost * amount}/сом</Text>
           </View>
           {data?.type === "Одежда" && (
             <View
@@ -115,11 +128,11 @@ export default ProductCard = ({ item }) => {
                 justifyContent: "space-between",
               }}
             >
-              <Text>Размер: {data?.size}</Text>
-              <Text>Рост: {data?.height}</Text>
-              <Text>Вес: {data?.weight}</Text>
-              <Text>Цвет: {data?.color}</Text>
-              <Text>Пол: {data?.gender}</Text>
+              {data?.size ? <Text>Размер: {data?.size}</Text> : null}
+              {data?.height ? <Text>Рост: {data?.height}</Text> : null}
+              {data?.weight ? <Text>Вес: {data?.weight}</Text> : null}
+              {data?.color ? <Text>Цвет: {data?.color}</Text> : null}
+              {data?.gender ? <Text>Пол: {data?.gender}</Text> : null}
             </View>
           )}
           <View>
@@ -226,5 +239,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "900",
     color: "#fff",
+  },
+  btnAmount: {
+    backgroundColor: "silver",
+    padding: 5,
+    borderRadius: 100,
+    paddingHorizontal: 5,
+    marginVertical: 7,
   },
 });
