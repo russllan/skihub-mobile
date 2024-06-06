@@ -21,7 +21,7 @@ export default BookedProductPage = () => {
         <ScrollView style={styles.viewScroll}>
           <View style={styles.viewBookedCard}>
             {data?.map((item) => (
-              <BookedProductCard item={item.product} />
+              <BookedProductCard item={item.product} amount={item.amount}/>
             ))}
           </View>
         </ScrollView>
