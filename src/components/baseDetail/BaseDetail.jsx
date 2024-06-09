@@ -50,7 +50,7 @@ export default BaseDetail = ({ dataBase }) => {
             <Text style={styles.mainSubText}>{dataBase.title}</Text>
           </View>
           <TouchableOpacity
-            onPress={() => setModal(!isModal)}
+            onPress={() => setModal(true)}
             style={{ flexDirection: "row", alignItems: "center", gap: 10 }}
           >
             <View>
@@ -72,8 +72,9 @@ export default BaseDetail = ({ dataBase }) => {
                   style={styles.btn}
                   onPress={() => {
                     navigation.navigate("formReview", {
-                      bs: dataBase.id,
+                      bs: dataBase?.id,
                     });
+                    setModal(false);
                   }}
                 >
                   <Text style={{ textAlign: "center" }}>Оставить отзыв</Text>

@@ -14,7 +14,7 @@ const queryClient = new QueryClient({
   },
 });
 
-const SECRET_KEY =
+const PUBLISHABLE_KEY =
   "pk_test_51PMkfuBW0LwhajamdUs4Ih8OBBuqDXta6FmWUSfllgbf3qjNOWU6JIHi4cX3kVAkwsj7CRAkDluRYHJJ2aDKmnok00eHJPLw9B";
 
 export default function App() {
@@ -27,9 +27,9 @@ export default function App() {
           translucent={true}
         />
         <NavigationContainer>
-          <StripeProvider publishableKey={SECRET_KEY}>
+          {/* <StripeProvider publishableKey={PUBLISHABLE_KEY}> */}
             <StackNavigator />
-          </StripeProvider>
+          {/* </StripeProvider> */}
         </NavigationContainer>
       </GestureHandlerRootView>
     </QueryClientProvider>

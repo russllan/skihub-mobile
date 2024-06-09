@@ -29,7 +29,10 @@ export default Options = () => {
         </View>
         <Entypo name="switch" size={24} color="black" />
       </TouchableOpacity>
-      <TouchableOpacity style={styles.touch}>
+      <TouchableOpacity
+        style={styles.touch}
+        onPress={() => navigation.navigate("history")}
+      >
         <View style={styles.touchView}>
           <EvilIcons
             name="credit-card"
@@ -37,7 +40,7 @@ export default Options = () => {
             color="black"
             style={{ paddingRight: 20 }}
           />
-          <Text>Карта</Text>
+          <Text>История оплаты</Text>
         </View>
         <MaterialIcons name="arrow-forward-ios" size={20} color="black" />
       </TouchableOpacity>

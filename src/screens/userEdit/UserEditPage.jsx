@@ -8,12 +8,16 @@ import {
 import { useUserProfile } from "../../hooks/useUser";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useState } from "react";
+import { gStyles } from "../../../styles/gStyle";
+import { useNavigation } from "@react-navigation/native";
+import { AntDesign } from "@expo/vector-icons";
 
 export default UserEditPage = () => {
   const [isPhone, setIsPhone] = useState(false);
   const [isPass, setIsPass] = useState(false);
   const [phone, setPhone] = useState("");
   const [pass, setPass] = useState("");
+  const { navigate } = useNavigation();
 
   const { data, isPending } = useUserProfile();
   if (!isPending) {
@@ -61,6 +65,13 @@ export default UserEditPage = () => {
           </View>
         )}
         <Text>{pass}</Text>
+        <TouchableOpacity
+          style={[gStyles.btnNew, gStyles.btnPlace]}
+          onPress={() => navigate("Root", { screen: "Профиль" })}
+        >
+          <Text style={{ color: "#fff", textAlign: "center" }}>Вернуться</Text>
+          <AntDesign name="arrowright" size={24} color="black" />
+        </TouchableOpacity>
       </View>
     </View>
   );
