@@ -1,13 +1,12 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { EvilIcons } from "@expo/vector-icons";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { gStyles } from "../../../styles/gStyle";
 import CustomModal from "../modal/Modal";
 import { useOneProduct } from "../../hooks/useProduct";
 import { useLikedProduct } from "../../hooks/useBasket";
 import { useMutation } from "@tanstack/react-query";
 import bookedProductService from "../../services/bookedProduct.service";
-import CheckoutForm from "../PaymentForm";
 import { useNavigation } from "@react-navigation/native";
 
 export default ProductCard = ({ item }) => {
@@ -17,9 +16,7 @@ export default ProductCard = ({ item }) => {
   const [amount, setAmount] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   // payment
-  const [payKey, setPayKey] = useState("");
   const [isPayment, setIsPayment] = useState(false);
-  // payment2
   const { navigate } = useNavigation();
 
   const bookedProduct = useMutation({
@@ -73,7 +70,7 @@ export default ProductCard = ({ item }) => {
         console.log(res);
         // setPayKey(res.paymentIntentClientSecret);
         // onCheckout(res.paymentIntentClientSecret)
-        // navigate("payment", { paymentSecret: res.paymentIntentClientSecret });
+        navigate("payment");
         setIsLoading(false);
       }
       return res;
@@ -147,14 +144,12 @@ export default ProductCard = ({ item }) => {
             <View>
               <Text>Статус: {data?.status}</Text>
             </View>
-            <TouchableOpacity style={gStyles.btn} onPress={onBookProduct}>
-              <Text>{isLoading ? "Загрузка..." : "Забронировать"}</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={gStyles.btn} onPress={onPayment}>
-              <Text>{"Оплатить"}</Text>
+            <TouchableOpacity style={gStyles.btnNew} onPress={onBookProduct}>
+              <Text style={{ color: "#fff", textAlign: "center" }}>
+                {isLoading ? "Загрузка..." : "Забронировать"}
+              </Text>
             </TouchableOpacity>
           </View>
-          {/* <CheckoutForm product={data?.id} amount={amount} startDate={data?.startDate} endDate={data?.endDate}/> */}
         </CustomModal>
         <View>
           <Image

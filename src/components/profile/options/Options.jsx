@@ -29,7 +29,10 @@ export default Options = () => {
         </View>
         <Entypo name="switch" size={24} color="black" />
       </TouchableOpacity>
-      <TouchableOpacity style={styles.touch}>
+      <TouchableOpacity
+        style={styles.touch}
+        onPress={() => navigation.navigate("history")}
+      >
         <View style={styles.touchView}>
           <EvilIcons
             name="credit-card"

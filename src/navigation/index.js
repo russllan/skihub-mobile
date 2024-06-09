@@ -7,7 +7,9 @@ import TourDetails from "../screens/tourDetails/TourDetails";
 import UserEditPage from "../screens/userEdit/UserEditPage";
 import EquipmentBasePage from "../screens/equipmentBase/EquipmentBasePage";
 import FormReview from "../screens/FormReview/FormReview";
-import CheckoutForm from "../components/PaymentForm";
+import PaymentFormPage from "../screens/paymentForm/PaymentFormPage";
+import ThanksPage from "../screens/ThanksPage/ThanksPage";
+import PaymentHistoryPage from "../screens/paymentForm/PaymentHistoryPage";
 
 const Stack = createStackNavigator();
 
@@ -73,7 +75,23 @@ const AuthNavigator = () => {
       />
       <Stack.Screen
         name="payment"
-        component={CheckoutForm}
+        component={PaymentFormPage}
+        options={{
+          headerShown: false,
+          gestureEnabled: false,
+        }}
+      />
+      <Stack.Screen
+        name="thanks"
+        component={ThanksPage}
+        options={{
+          headerShown: false,
+          gestureEnabled: false,
+        }}
+      />
+      <Stack.Screen
+        name="history"
+        component={PaymentHistoryPage}
         options={{
           headerShown: false,
           gestureEnabled: false,

@@ -39,4 +39,15 @@ export const gStyles = StyleSheet.create({
     opacity: 0.4,
     color: '#fff',
   },
+  btnNew: {
+    width: 200,
+    paddingVertical: 15,
+    backgroundColor: "#6A5ACD",
+    borderRadius: 5,
+  },
+  btnPlace: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+  },
 });
