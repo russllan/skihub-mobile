@@ -25,9 +25,9 @@ export default BookedProductCard = ({ item, amount }) => {
           <View><Text>Заброинрованно: {item.isBooked ? 'Да' : 'Нет'}</Text></View>
           <View><Text>Тип: {item.type}</Text></View>
         </View>
-        <View style={{ width: "100%", flexDirection: 'row', alignItems: "center", justifyContent: 'center'}}>
+        {/* <View style={{ width: "100%", flexDirection: 'row', alignItems: "center", justifyContent: 'center'}}>
           <TouchableOpacity style={styles.btn}><Text>Отменить бронь!</Text></TouchableOpacity>
-        </View>
+        </View> */}
       </View>
     </View>
   );

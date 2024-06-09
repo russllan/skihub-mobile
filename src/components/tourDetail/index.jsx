@@ -1,27 +1,47 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  ImageBackground,
-  ScrollView,
-  Button,
-} from "react-native";
+import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 import ArrowLeft from "../arrowLeft/ArrowLeft";
 import Modal from "../modal/Modal";
 import { EvilIcons } from "@expo/vector-icons";
 import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import tourBookedService from "../../services/tourBooked.service";
 
 export default TourDetail = ({ data }) => {
-  const navigation = useNavigation();
+  const { navigate } = useNavigation();
   const [modal, setModal] = useState(false);
+
+  const { mutateAsync } = useMutation({
+    mutationKey: ["bookedTour-create"],
+    mutationFn: async (data) => await tourBookedService.create(data),
+  });
+
+  const paymentTour = async () => {
+    const frontData = {
+      isCancel: true,
+      tour: Number(data?.id),
+    };
+    console.log("Sending data:", frontData);
+    try {
+      const res = await mutateAsync(frontData);
+      if (res) {
+        navigate("payment");
+        console.log(res);
+      }
+    } catch (error) {
+      console.error(
+        "Error booking tour:",
+        error.response?.data || error.message
+      );
+    }
+  };
+
   return (
     <View style={styles.wrapper}>
       <View style={styles.viewArrow}>
         <TouchableOpacity
-          onPress={() => navigation.navigate("Root", { screen: "Profile" })}
+          onPress={() => navigate("Root", { screen: "Profile" })}
         >
           <ArrowLeft name="arrowleft" size={32} color="black" />
         </TouchableOpacity>
@@ -86,8 +106,8 @@ export default TourDetail = ({ data }) => {
               <Text style={{ fontWeight: "100" }}>/person</Text>
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.btn}>
-            <Text>Book Now</Text>
+          <TouchableOpacity style={styles.btn} onPress={paymentTour}>
+            <Text style={{ color: "#fff" }}>Book Now</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
