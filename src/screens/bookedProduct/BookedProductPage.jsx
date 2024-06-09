@@ -48,7 +48,7 @@ export default BookedProductPage = () => {
             alignSelf: "center",
           }}
         >
-          Заброинрованные снаряжения:
+          Забронированные снаряжения и туры:
         </Text>
         <View
           style={{

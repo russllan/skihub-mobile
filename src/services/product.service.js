@@ -11,7 +11,7 @@ class ProductService {
   }
 
   async post(data) {
-    const response = await $api.post(`${base_URL}/product/create`, data);
+    const response = await $api.post(`/product/create`, data);
     return response.data;
   }
 

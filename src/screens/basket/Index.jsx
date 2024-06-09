@@ -24,9 +24,9 @@ export default Basket = () => {
           )}
         </ScrollView>
         <View>
-          <TouchableOpacity style={gStyles.btn}>
+          {/* <TouchableOpacity style={gStyles.btn}>
             <Text style={{textAlign: "center"}}>Забронировать</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       </View>
     </View>
