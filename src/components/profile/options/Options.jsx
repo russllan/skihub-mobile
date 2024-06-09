@@ -37,7 +37,7 @@ export default Options = () => {
             color="black"
             style={{ paddingRight: 20 }}
           />
-          <Text>Карта</Text>
+          <Text>История оплаты</Text>
         </View>
         <MaterialIcons name="arrow-forward-ios" size={20} color="black" />
       </TouchableOpacity>

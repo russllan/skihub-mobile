@@ -67,10 +67,10 @@ export default HomePage = () => {
             />
           )}
           <View style={styles.tourView}>
-            <Text style={gStyles.titleText}>Tours</Text>
-            {tourIsError && <Text>Error fetching tours</Text>}
+            <Text style={gStyles.titleText}>Туры</Text>
+            {tourIsError && <Text>Ошибка при получении туров</Text>}
             {tourIsLoading ? (
-              <Text>...Loading Tours</Text>
+              <Text>...Загрузка</Text>
             ) : (
               tourData && (
                 <FlatList

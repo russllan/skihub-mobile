@@ -21,18 +21,31 @@ export default function FormReview() {
 
   const { mutateAsync } = useMutation({
     mutationKey: ["review-create"],
-    mutationFn: async ({ data }) => await reviewService.createReview({ data }),
+    mutationFn: async (data) => await reviewService.createReview(data),
   });
 
   const onsubmit = async () => {
+    if (comment.trim() === "") {
+      alert("Комментарий не может быть пустым");
+      return;
+    }
+
     const data = {
-      rating: rating,
+      rating: parseInt(rating, 10), // Преобразование строки в число
       comment: comment,
-      base: bs
+      base: parseInt(bs, 10),
     };
-    const res = await mutateAsync({ data });
-    if (res) {
-      setIsCheck(true);
+
+    console.log("Submitting data:", data);
+
+    try {
+      const res = await mutateAsync(data);
+      if (res) {
+        setIsCheck(true);
+      }
+      console.log(res);
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -42,7 +55,7 @@ export default function FormReview() {
         <Text style={styles.label}>Введите рейтинг</Text>
         <TextInput
           style={styles.input}
-          onChangeText={setRating}
+          onChangeText={(text) => setRating(parseInt(text, 10) || 0)}
           keyboardType="numeric" // Установка клавиатуры для ввода чисел
         />
       </View>
