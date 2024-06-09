@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 
 export default function BookedTourCard({ item }) {
   return (
@@ -9,21 +9,21 @@ export default function BookedTourCard({ item }) {
         <Text>Локация: {item?.tour.location}</Text>
       </View>
       <View style={styles.img}>
-        {/* <Image
+        <Image
           style={{ width: "100%", height: "100%" }}
-          source={{ uri: `${item?.tour.image}` }}
-        /> */}
+          source={{ uri: `${item?.tour?.image}` }}
+        />
       </View>
       <View style={styles.bottom}>
         <View style={styles.bottom}>
-          <Text>Стоимость: {item?.cost}</Text>
+          <Text>Стоимость: {item?.tour.cost}</Text>
         </View>
         <View style={styles.bottom}>
           <View>
             <Text>Статус: {Date(item?.status)}</Text>
           </View>
           <View>
-            <Text>Окончание тура: {item?.text}</Text>
+            <Text>Окончание тура: {item?.tour.text}</Text>
           </View>
         </View>
         <View
@@ -34,13 +34,13 @@ export default function BookedTourCard({ item }) {
           }}
         >
           <View>
-            <Text>Кол-во дней: {item?.amountDay}</Text>
+            <Text>Кол-во дней: {item?.tour.amountDay}</Text>
           </View>
           <View>
-            <Text>Начало тура: {item?.startDate}</Text>
+            <Text>Начало тура: {item?.tour.startDate}</Text>
           </View>
           <View>
-            <Text>Конец тура: {item?.endDate}</Text>
+            <Text>Конец тура: {item?.tour.endDate}</Text>
           </View>
         </View>
         {/* <View

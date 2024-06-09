@@ -2,7 +2,7 @@ import axios from "axios";
 import { getTokenFromLocalStorage } from "../hooks/localStorage.helper";
 
 export const base_URL = "https://skihub-server-production.up.railway.app/api";
-// export const base_URL = "http://localhost:3000/api";
+// export const base_URL = "http://localhost:3001/api";
 
 const $api = axios.create({
   baseURL: base_URL,

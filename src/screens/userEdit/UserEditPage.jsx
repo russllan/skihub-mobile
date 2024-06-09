@@ -70,7 +70,7 @@ export default UserEditPage = () => {
           onPress={() => navigate("Root", { screen: "Профиль" })}
         >
           <Text style={{ color: "#fff", textAlign: "center" }}>Вернуться</Text>
-          <AntDesign name="arrowright" size={24} color="black" />
+          <AntDesign name="arrowleft" size={24} color="white" />
         </TouchableOpacity>
       </View>
     </View>
