@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
   view: {
     flex: 1,
     paddingTop: 40,
+    backgroundColor: 'black'
   },
   viewInput: {
     borderWidth: 1,

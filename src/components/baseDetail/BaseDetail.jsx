@@ -24,7 +24,7 @@ export default BaseDetail = ({ dataBase }) => {
       <View style={{ width: "100%", height: 350 }}>
         <ImageBackground
           source={{
-            uri: "https://images.unsplash.com/photo-1491904768633-2b7e3e7fede5?w=1440&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fG1vdW50YWluc3xlbnwwfHwwfHx8MA%3D%3D",
+            uri: dataBase?.image,
           }}
           style={{ width: "100%", height: "100%" }}
         >

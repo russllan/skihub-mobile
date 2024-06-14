@@ -23,11 +23,7 @@ export default Basket = () => {
               .map((item) => <ProductCard key={item.id} item={item} />)
           )}
         </ScrollView>
-        <View>
-          {/* <TouchableOpacity style={gStyles.btn}>
-            <Text style={{textAlign: "center"}}>Забронировать</Text>
-          </TouchableOpacity> */}
-        </View>
+        <View></View>
       </View>
     </View>
   );
@@ -38,6 +34,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     paddingTop: 60,
+    backgroundColor: 'black',
   },
   container: {
     width: "90%",

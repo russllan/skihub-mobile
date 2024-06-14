@@ -5,6 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { StackNavigator } from "./src/navigation";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { StripeProvider } from "@stripe/stripe-react-native";
+import { gStyles } from "./styles/gStyle";
 
 const queryClient = new QueryClient({
   defaultOptions: {

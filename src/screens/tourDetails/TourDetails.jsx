@@ -25,6 +25,7 @@ export default TourDetails = () => {
 const styles = StyleSheet.create({
   tour: {
     flex: 1,
+    backgroundColor: 'black'
   },
   top: {},
   bottom: {},

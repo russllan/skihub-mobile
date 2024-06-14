@@ -98,7 +98,8 @@ const styles = StyleSheet.create({
     paddingTop: 40,
     flexDirection: "row",
     justifyContent: "center",
-    marginBottom: 100,
+    marginBottom: 77,
+    backgroundColor: 'black',
   },
   viewBookedCard: {
     flexDirection: "row",

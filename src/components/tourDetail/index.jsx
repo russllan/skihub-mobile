@@ -113,6 +113,14 @@ export default TourDetail = ({ data }) => {
       </ScrollView>
       <Modal isModal={modal} setModal={setModal}>
         <Text>Hello modal!</Text>
+        <View style={{flexDirection: 'row', gap: 10,}}>
+          <TouchableOpacity style={styles.btn} onPress={paymentTour}>
+            <Text style={{ color: "#fff" }}>+</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.btn} onPress={paymentTour}>
+            <Text style={{ color: "#fff" }}>-</Text>
+          </TouchableOpacity>
+        </View>
       </Modal>
     </View>
   );
