@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 import ArrowLeft from "../arrowLeft/ArrowLeft";
-import Modal from "../modal/Modal";
+import CustomModal from "../modal/Modal";
 import { EvilIcons } from "@expo/vector-icons";
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
@@ -37,6 +37,8 @@ export default TourDetail = ({ data }) => {
     }
   };
 
+  console.log(data);
+
   return (
     <View style={styles.wrapper}>
       <View style={styles.viewArrow}>
@@ -50,7 +52,7 @@ export default TourDetail = ({ data }) => {
         <Image
           style={{ width: 360, height: 400, borderRadius: 20 }}
           source={{
-            uri: "https://images.unsplash.com/photo-1606159515982-6797651236fd?w=1080&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHRvdXIlMjBza2l8ZW58MHx8MHx8fDA%3D",
+            uri: data?.image,
           }}
         />
       </View>
@@ -59,7 +61,7 @@ export default TourDetail = ({ data }) => {
           <Image
             style={{ width: 70, height: 70, borderRadius: 60, marginTop: 25 }}
             source={{
-              uri: "https://images.unsplash.com/photo-1606159515982-6797651236fd?w=1080&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHRvdXIlMjBza2l8ZW58MHx8MHx8fDA%3D",
+              uri: data?.image,
             }}
           />
         </View>
@@ -111,7 +113,7 @@ export default TourDetail = ({ data }) => {
           </TouchableOpacity>
         </View>
       </ScrollView>
-      <Modal isModal={modal} setModal={setModal}>
+      <CustomModal isModal={modal} setModal={setModal}>
         <Text>Hello modal!</Text>
         <View style={{flexDirection: 'row', gap: 10,}}>
           <TouchableOpacity style={styles.btn} onPress={paymentTour}>
@@ -121,7 +123,7 @@ export default TourDetail = ({ data }) => {
             <Text style={{ color: "#fff" }}>-</Text>
           </TouchableOpacity>
         </View>
-      </Modal>
+      </CustomModal>
     </View>
   );
 };

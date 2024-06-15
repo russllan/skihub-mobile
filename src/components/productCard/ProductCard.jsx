@@ -1,4 +1,12 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  Modal,
+  Button,
+} from "react-native";
 import { EvilIcons } from "@expo/vector-icons";
 import { useState } from "react";
 import { gStyles } from "../../../styles/gStyle";
@@ -8,6 +16,7 @@ import { useLikedProduct } from "../../hooks/useBasket";
 import { useMutation } from "@tanstack/react-query";
 import bookedProductService from "../../services/bookedProduct.service";
 import { useNavigation } from "@react-navigation/native";
+import { Calendar } from "react-native-calendars";
 
 export default ProductCard = ({ item }) => {
   const [like, setLike] = useState(item?.isBooked);
@@ -15,17 +24,19 @@ export default ProductCard = ({ item }) => {
   const { isPending, data } = useOneProduct(item.id);
   const [amount, setAmount] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
-  // payment
-  const [isPayment, setIsPayment] = useState(false);
+  //
   const { navigate } = useNavigation();
+  // datePicker
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [showStartCalendar, setShowStartCalendar] = useState(false);
+  const [showEndCalendar, setShowEndCalendar] = useState(false);
 
   const bookedProduct = useMutation({
     mutationKey: ["booked-product"],
     mutationFn: async ({ data }) =>
       await bookedProductService.createBookedProduct(data),
   });
-
-  // console.log(bookedProduct.mutateAsync);
 
   const { mutateAsync } = useLikedProduct();
 
@@ -59,8 +70,8 @@ export default ProductCard = ({ item }) => {
     setIsLoading(true);
     const data = {
       isRefund: false,
-      startDate: "2024-09-10",
-      endDate: "2024-10-12",
+      startDate: startDate,
+      endDate: endDate,
       amount: amount,
       product: item?.id,
     };
@@ -68,8 +79,6 @@ export default ProductCard = ({ item }) => {
       const res = await bookedProduct.mutateAsync({ data });
       if (res) {
         console.log(res);
-        // setPayKey(res.paymentIntentClientSecret);
-        // onCheckout(res.paymentIntentClientSecret)
         navigate("payment");
         setIsLoading(false);
       }
@@ -79,8 +88,17 @@ export default ProductCard = ({ item }) => {
     }
   };
 
-  const onPayment = () => {
-    setIsPayment(true);
+  const handleStartDateChange = (day) => {
+    setStartDate(day.dateString);
+    setShowStartCalendar(false);
+    if (endDate && day.dateString > endDate) {
+      setEndDate("");
+    }
+  };
+
+  const handleEndDateChange = (day) => {
+    setEndDate(day.dateString);
+    setShowEndCalendar(false);
   };
 
   if (data == undefined) return <Text>Loading...</Text>;
@@ -90,7 +108,7 @@ export default ProductCard = ({ item }) => {
         <CustomModal
           isModal={active}
           setModal={setActive}
-          height={560}
+          height={660}
           width={320}
         >
           <View style={styles.productDetail}>
@@ -104,7 +122,7 @@ export default ProductCard = ({ item }) => {
             <View>
               <Text>Название: {data?.title}</Text>
             </View>
-            <View>
+            <View style={styles.viewAmount}>
               <TouchableOpacity
                 style={styles.btnAmount}
                 onPress={() => setAmount((prev) => prev - 1)}
@@ -144,7 +162,78 @@ export default ProductCard = ({ item }) => {
             <View>
               <Text>Статус: {data?.status}</Text>
             </View>
-            <TouchableOpacity style={gStyles.btnNew} onPress={onBookProduct}>
+            {/*DATA VIEW 1*/}
+            <Text style={styles.title}>Выберите даты бронирования</Text>
+
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => setShowStartCalendar(true)}
+            >
+              <Text style={styles.buttonText}>
+                Дата начала брони: {startDate || "не выбрана"}
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => setShowEndCalendar(true)}
+            >
+              <Text style={styles.buttonText}>
+                Дата окончания брони: {endDate || "не выбрана"}
+              </Text>
+            </TouchableOpacity>
+
+            <Modal
+              visible={showStartCalendar}
+              transparent={true}
+              animationType="slide"
+            >
+              <View style={styles.modalContainer}>
+                <Calendar
+                  onDayPress={handleStartDateChange}
+                  markedDates={{
+                    [startDate]: {
+                      selected: true,
+                      marked: true,
+                      selectedColor: "blue",
+                    },
+                  }}
+                />
+                <Button
+                  title="Закрыть"
+                  onPress={() => setShowStartCalendar(false)}
+                />
+              </View>
+            </Modal>
+
+            <Modal
+              visible={showEndCalendar}
+              transparent={true}
+              animationType="slide"
+            >
+              <View style={styles.modalContainer}>
+                <Calendar
+                  onDayPress={handleEndDateChange}
+                  minDate={startDate || undefined} // Ограничение на минимальную дату (дата начала брони)
+                  markedDates={{
+                    [endDate]: {
+                      selected: true,
+                      marked: true,
+                      selectedColor: "blue",
+                    },
+                  }}
+                />
+                <Button
+                  title="Закрыть"
+                  onPress={() => setShowEndCalendar(false)}
+                />
+              </View>
+            </Modal>
+            {""}
+            <TouchableOpacity
+              style={[gStyles.btnNew, { alignSelf: "center" }]}
+              onPress={onBookProduct}
+            >
               <Text style={{ color: "#fff", textAlign: "center" }}>
                 {isLoading ? "Загрузка..." : "Забронировать"}
               </Text>
@@ -244,10 +333,43 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
   btnAmount: {
-    backgroundColor: "silver",
+    backgroundColor: "#6A5ACD",
     padding: 5,
     borderRadius: 100,
-    paddingHorizontal: 5,
+    paddingHorizontal: 35,
     marginVertical: 7,
+  },
+  title: {
+    fontSize: 20,
+    textAlign: "center",
+  },
+  button: {
+    padding: 10,
+    backgroundColor: "#6A5ACD",
+    opacity: 0.5,
+    borderRadius: 5,
+  },
+  buttonText: {
+    color: "white",
+    textAlign: "center",
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+  },
+  calendarContainer: {
+    backgroundColor: "white",
+    borderRadius: 10,
+    padding: 10,
+    margin: 20,
+  },
+  viewAmount: {
+    flexDirection: "row",
+    gap: 15,
+    justifyContent: "space-between",
+    alignItems: "center",
+    alignSelf: "center",
   },
 });
