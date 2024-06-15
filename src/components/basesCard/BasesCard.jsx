@@ -1,6 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { StyleSheet, View, Text, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { EvilIcons } from "@expo/vector-icons";
 
 export default BasesCard = ({ data }) => {
   const navigation = useNavigation();
@@ -14,15 +15,18 @@ export default BasesCard = ({ data }) => {
           <TouchableOpacity onPress={onClick}>
             <Image
               source={{
-                uri: "https://cdn.dribbble.com/userupload/7667073/file/original-4488ef7ede3f97ca753e450973309c27.png?resize=400x300&vertical=center",
+                uri: data?.image,
               }}
               style={styles.cardImage}
             />
           </TouchableOpacity>
         </View>
-        <View style={{ paddingVertical: 10 }}>
-          <Text>{data.title}</Text>
-          <Text>{data.address}</Text>
+        <View style={{ paddingVertical: 15 }}>
+          <Text style={styles.text}>{data.title}</Text>
+          <View style={{flexDirection: 'row', gap: 5, paddingTop: 5}}>
+            <EvilIcons name="location" size={24} color="black" />
+            <Text>{data.address}</Text>
+          </View>
           {/* <Text>{data.reviews.rating}</Text> */}
         </View>
       </View>
@@ -37,12 +41,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   card: {
-    height: 370,
+    height: 400, //370
     // backgroundColor: "red",
   },
   cardImage: {
-    width: 200,
-    height: 200,
+    width: 210,
+    height: 240,
     borderRadius: 10,
   },
   wrapper: {
