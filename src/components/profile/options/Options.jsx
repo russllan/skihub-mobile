@@ -22,12 +22,12 @@ export default Options = () => {
           <Ionicons
             name="moon-sharp"
             size={20}
-            color="black"
+            color="white"
             style={{ paddingRight: 20 }}
           />
-          <Text>{"Dark mode"}</Text>
+          <Text style={styles.txt}>{"Dark mode"}</Text>
         </View>
-        <Entypo name="switch" size={24} color="black" />
+        <Entypo name="switch" size={24} color="white" />
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.touch}
@@ -37,12 +37,12 @@ export default Options = () => {
           <EvilIcons
             name="credit-card"
             size={26}
-            color="black"
+            color="white"
             style={{ paddingRight: 20 }}
           />
-          <Text>История оплаты</Text>
+          <Text style={styles.txt}>История оплаты</Text>
         </View>
-        <MaterialIcons name="arrow-forward-ios" size={20} color="black" />
+        <MaterialIcons name="arrow-forward-ios" size={20} color="white" />
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => navigation.navigate("userEdit")}
@@ -52,24 +52,24 @@ export default Options = () => {
           <FontAwesome5
             name="user"
             size={20}
-            color="black"
+            color="white"
             style={{ paddingRight: 25 }}
           />
-          <Text>Данные пользователя</Text>
+          <Text style={styles.txt}>Данные пользователя</Text>
         </View>
-        <MaterialIcons name="arrow-forward-ios" size={20} color="black" />
+        <MaterialIcons name="arrow-forward-ios" size={20} color="white" />
       </TouchableOpacity>
       <TouchableOpacity style={styles.touch} onPress={logout}>
         <View style={styles.touchView}>
           <Ionicons
             name="settings-outline"
             size={20}
-            color="black"
+            color="white"
             style={{ paddingRight: 20 }}
           />
-          <Text>Выйти</Text>
+          <Text style={styles.txt}>Выйти</Text>
         </View>
-        <MaterialIcons name="arrow-forward-ios" size={20} color="black" />
+        <MaterialIcons name="arrow-forward-ios" size={20} color="white" />
       </TouchableOpacity>
     </View>
   );
@@ -90,5 +90,8 @@ const styles = StyleSheet.create({
   },
   touchView: {
     flexDirection: "row",
+  },
+  txt: {
+    color: "white",
   },
 });

@@ -29,6 +29,8 @@ export default BookedProductPage = () => {
     queryFn: bookedProductService.getAll,
   });
 
+  console.log(data);
+
   const tourBooked = useQuery({
     queryKey: ["get-tour-booked"],
     queryFn: tourBookedService.getBookedTour,
@@ -46,6 +48,7 @@ export default BookedProductPage = () => {
             fontWeight: "600",
             paddingVertical: 15,
             alignSelf: "center",
+            color: 'white'
           }}
         >
           Забронированные снаряжения и туры:
@@ -98,7 +101,7 @@ const styles = StyleSheet.create({
     paddingTop: 40,
     flexDirection: "row",
     justifyContent: "center",
-    marginBottom: 77,
+    marginBottom: 57,
     backgroundColor: 'black',
   },
   viewBookedCard: {
@@ -123,5 +126,8 @@ const styles = StyleSheet.create({
   },
   btnEquipmentActive: {
     borderBottomColor: "#6A5ACD",
+  },
+  btnText: {
+    color: 'white'
   },
 });

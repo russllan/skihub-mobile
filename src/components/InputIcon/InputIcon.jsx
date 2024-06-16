@@ -5,11 +5,11 @@ import { AntDesign } from "@expo/vector-icons";
 const IconTextInput = ({ placeholder, icon, style, ...props }) => {
   return (
     <View style={[styles.container, style]}>
-      <AntDesign name={icon} size={24} color="gray" style={styles.icon} />
+      <AntDesign name={icon} size={24} color="white" style={styles.icon} />
       <TextInput
         style={styles.input}
         placeholder={placeholder}
-        placeholderTextColor="gray"
+        placeholderTextColor="#fff"
         {...props}
       />
     </View>
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: 'gray',
+    borderColor: 'white',
     borderRadius: 5,
     paddingHorizontal: 10,
     paddingVertical: 5,
@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     fontSize: 16,
+    color: 'white'
   },
 });
 

@@ -38,15 +38,15 @@ export default function PaymentFormPage() {
         </View>
         <View>
           <Text style={styles.text}>Платежный адрес</Text>
-          <TextInput style={styles.input} placeholder="kgs" />
-          <TextInput style={styles.input} placeholder="ZIP code" />
+          <TextInput style={styles.input} placeholder="kgs"  placeholderTextColor="#fff"/>
+          <TextInput style={styles.input} placeholder="ZIP code"  placeholderTextColor="#fff" />
         </View>
         <View>
           <TouchableOpacity
             style={styles.btn}
             onPress={() => navigate("thanks")}
           >
-            <Text style={{ textAlign: "center", color: "#fff" }}>Оплатить</Text>
+            <Text style={{ textAlign: "center", color: "white" }}>Оплатить</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -57,6 +57,7 @@ export default function PaymentFormPage() {
 const styles = StyleSheet.create({
   viewPayment: {
     flex: 1,
+    backgroundColor: "black",
   },
   container: {
     width: "90%",
@@ -72,9 +73,10 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     padding: 7,
     borderWidth: 1,
-    borderBlockColor: "#FFFAFA",
+    borderColor: "white",
     borderRadius: 5,
     marginVertical: 5,
+    color: 'white'
   },
   inputSmall: {
     width: "48%",
@@ -93,9 +95,11 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: "800",
+    color: "white",
   },
   text: {
     fontSize: 14,
     opacity: 0.5,
+    color: "white",
   },
 });

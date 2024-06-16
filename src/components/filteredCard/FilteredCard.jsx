@@ -63,19 +63,21 @@ export default FilteredCard = () => {
                 style={{ width: "100%" }}
                 onPress={() => handleFilter(item?.title)}
               >
-                <Text style={{ width: "55%" }}>{item?.title}</Text>
+                <Text style={{ width: "55%", color: "white" }}>
+                  {item?.title}
+                </Text>
               </TouchableOpacity>
             </View>
           )}
         />
       </View>
-      <ScrollView style={{ width: "100%", height: 450 }}>
+      <ScrollView style={{ width: "100%", height: 550 }}>
         <View style={styles.viewCard}>
           {isPending ? (
             <Text>...Loading</Text>
           ) : (
             filteredData?.map((item) => (
-              <View style={{ paddingRight: 0 }}>
+              <View style={{ width: "100%", alignSelf: "center" }}>
                 <ProductCard item={item} />
               </View>
             ))
@@ -112,9 +114,11 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: "flex-start",
+    justifyContent: "center",
     alignItems: "center",
+    alignSelf: "center",
     paddingTop: 30,
     gap: 20,
+    paddingLeft: 28
   },
 });

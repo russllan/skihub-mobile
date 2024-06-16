@@ -49,6 +49,7 @@ export default function PaymentHistoryPage() {
 const styles = StyleSheet.create({
   viewHistory: {
     flex: 1,
+    backgroundColor: "black",
   },
   container: {
     paddingVertical: 60,
