@@ -15,13 +15,21 @@ export default Basket = () => {
     <View style={styles.basketPage}>
       <View style={styles.container}>
         <ScrollView style={styles.product}>
-          {isPending ? (
-            <Text>...Loading</Text>
-          ) : (
-            data
-              ?.filter((item) => item.isBooked === true)
-              .map((item) => <ProductCard key={item.id} item={item} />)
-          )}
+          <View
+            style={{
+              width: "100%",
+              flexDirection: "column",
+              gap: 20,
+            }}
+          >
+            {isPending ? (
+              <Text>...Loading</Text>
+            ) : (
+              data
+                ?.filter((item) => item.isBooked === true)
+                .map((item) => <ProductCard key={item.id} item={item} />)
+            )}
+          </View>
         </ScrollView>
         <View></View>
       </View>
@@ -34,7 +42,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     paddingTop: 60,
-    backgroundColor: 'black',
+    backgroundColor: "black",
   },
   container: {
     width: "90%",
@@ -43,6 +51,8 @@ const styles = StyleSheet.create({
   },
   product: {
     flex: 1,
+    flexDirection: "row",
+    flexWrap: "wrap",
     alignSelf: "center",
   },
 });

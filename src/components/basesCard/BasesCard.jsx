@@ -24,8 +24,8 @@ export default BasesCard = ({ data }) => {
         <View style={{ paddingVertical: 15 }}>
           <Text style={styles.text}>{data.title}</Text>
           <View style={{flexDirection: 'row', gap: 5, paddingTop: 5}}>
-            <EvilIcons name="location" size={24} color="black" />
-            <Text>{data.address}</Text>
+            <EvilIcons name="location" size={24} color="white" />
+            <Text style={{color: "white"}}>{data.address}</Text>
           </View>
           {/* <Text>{data.reviews.rating}</Text> */}
         </View>
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     display: "flex",
   },
   text: {
-    color: "#fff",
+    color: "white",
     fontSize: 30,
     fontWeight: "bold",
   },

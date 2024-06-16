@@ -35,7 +35,7 @@ function SignUp() {
                         {isError ? "Error" : "Sign Up"}
                     </Text>
                     <TextInput onChangeText={setphoneNumber} style={styles.input} placeholder='Enter Your Phone Number' />
-                    <TextInput onChangeText={setPassword} style={styles.input} placeholder='Enter Password' />
+                    <TextInput onChangeText={setPassword} style={styles.input} placeholder='Enter Password' secureTextEntry={true} />
 
                     <TouchableOpacity onPress={() => onSubmit(USER)} style={[styles.footerBtn, { backgroundColor: "white" }]}>
                         <Text style={styles.footerBtnText}>Register</Text>

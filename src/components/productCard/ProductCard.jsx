@@ -127,14 +127,14 @@ export default ProductCard = ({ item }) => {
                 style={styles.btnAmount}
                 onPress={() => setAmount((prev) => prev - 1)}
               >
-                <Text style={{ textAlign: "center" }}>—</Text>
+                <Text style={{ textAlign: "center", color: "white" }}>—</Text>
               </TouchableOpacity>
               <Text>Количество: {amount} шт.</Text>
               <TouchableOpacity
                 style={styles.btnAmount}
                 onPress={() => setAmount((prev) => prev + 1)}
               >
-                <Text style={{ textAlign: "center" }}>+</Text>
+                <Text style={{ textAlign: "center", color: "white" }}>+</Text>
               </TouchableOpacity>
             </View>
             <View>
@@ -346,7 +346,6 @@ const styles = StyleSheet.create({
   button: {
     padding: 10,
     backgroundColor: "#6A5ACD",
-    opacity: 0.5,
     borderRadius: 5,
   },
   buttonText: {

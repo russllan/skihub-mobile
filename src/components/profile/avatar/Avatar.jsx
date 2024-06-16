@@ -4,22 +4,21 @@ import { gStyles } from "../../../../styles/gStyle";
 export default function Avatar({ data, isPending }) {
   return (
     <View style={styles.avatar}>
-      <View style={styles.wrapperImg}>
-        <Image
-          source={{
-            uri: "https://plus.unsplash.com/premium_photo-1682091664140-d2a290b563db?w=720&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c2tpfGVufDB8fDB8fHww",
-          }}
-          style={styles.img}
-        />
-      </View>
+      <Image
+        source={{
+          uri: "https://plus.unsplash.com/premium_photo-1711572322915-0106714be1af?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjF8fHNraSUyMGRhcmt8ZW58MHx8MHx8fDA%3D",
+        }}
+        style={styles.img}
+      />
       <View style={styles.viewTitle}>
-        <Text style={gStyles.titleText}>Madelynn Griffin</Text>
         <View style={styles.wrapperPhone}>
           <View>
-            <Text>Phone</Text>
+            <Text style={{ color: "white" }}>Phone</Text>
           </View>
           <View>
-            <Text style={gStyles.opacityText}>{isPending ? <Text>...Загрузка</Text> :data?.phoneNumber}</Text>
+            <Text style={gStyles.opacityText}>
+              {isPending ? <Text>...Загрузка</Text> : data?.phoneNumber}
+            </Text>
           </View>
         </View>
       </View>
@@ -33,7 +32,6 @@ const styles = StyleSheet.create({
     height: "100%",
     alignItems: "center",
     alignSelf: "center",
-    marginBottom: 45,
   },
   wrapperImg: {
     width: 195,
@@ -47,7 +45,9 @@ const styles = StyleSheet.create({
     padding: 10,
     width: 180,
     height: 180,
-    borderRadius: 100,
+    width: 400,
+    height: 200,
+    borderRadius: 20,
   },
   viewTitle: {
     width: 300,

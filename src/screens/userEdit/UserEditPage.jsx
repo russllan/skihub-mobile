@@ -31,15 +31,16 @@ export default UserEditPage = () => {
           onPress={() => setIsPhone(!isPhone)}
         >
           <View style={styles.touchView}>
-            <Text>{data?.phoneNumber}</Text>
+            <Text style={styles.txt}>{data?.phoneNumber}</Text>
           </View>
-          <MaterialIcons name="arrow-forward-ios" size={20} color="black" />
+          <MaterialIcons name="arrow-forward-ios" size={20} color="white" />
         </TouchableOpacity>
         {isPhone && (
           <View style={styles.viewInput}>
             <TextInput
               style={styles.input}
               placeholder="Измените номер телефона"
+              placeholderTextColor="#fff"
               onChangeText={setPhone}
               value={phone}
             />
@@ -50,21 +51,22 @@ export default UserEditPage = () => {
           onPress={() => setIsPass(!isPass)}
         >
           <View style={styles.touchView}>
-            <Text>Изменить пароль</Text>
+            <Text style={styles.txt}>Изменить пароль</Text>
           </View>
-          <MaterialIcons name="arrow-forward-ios" size={20} color="black" />
+          <MaterialIcons name="arrow-forward-ios" size={20} color="white" />
         </TouchableOpacity>
         {isPass && (
           <View style={styles.viewInput}>
             <TextInput
               style={styles.input}
               placeholder="Изменить пароль"
+              placeholderTextColor="#fff"
               onChange={setPass}
               value={pass}
             />
           </View>
         )}
-        <Text>{pass}</Text>
+        <Text style={styles.txt}>{pass}</Text>
         <TouchableOpacity
           style={[gStyles.btnNew, gStyles.btnPlace]}
           onPress={() => navigate("Root", { screen: "Профиль" })}
@@ -84,6 +86,7 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "black",
   },
   container: {
     width: "85%",
@@ -111,5 +114,8 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
+  },
+  txt: {
+    color: "white",
   },
 });

@@ -32,7 +32,8 @@ export const gStyles = StyleSheet.create({
   titleText: {
     fontSize: 20,
     fontWeight: "600",
-    padding: 10
+    padding: 10,
+    color: "white"
   },
   orangeText: {
     fontSize: 20,

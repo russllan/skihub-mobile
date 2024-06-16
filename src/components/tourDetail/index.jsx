@@ -45,7 +45,9 @@ export default TourDetail = ({ data }) => {
         <TouchableOpacity
           onPress={() => navigate("Root", { screen: "Profile" })}
         >
-          <ArrowLeft name="arrowleft" size={32} color="black" />
+          <View style={{ top: 20 }}>
+            <ArrowLeft name="arrowleft" size={32} color="white" />
+          </View>
         </TouchableOpacity>
       </View>
       <View style={{ height: 450, alignItems: "center", paddingVertical: 50 }}>
@@ -74,7 +76,7 @@ export default TourDetail = ({ data }) => {
               <EvilIcons
                 name="location"
                 size={24}
-                color="black"
+                color="white"
                 style={{ verticalAlign: "bottom" }}
               />
               <Text style={styles.smallText}>{data?.location}</Text>
@@ -109,13 +111,13 @@ export default TourDetail = ({ data }) => {
             </Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.btn} onPress={paymentTour}>
-            <Text style={{ color: "#fff" }}>Book Now</Text>
+            <Text style={{ color: "white" }}>Book Now</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
       <CustomModal isModal={modal} setModal={setModal}>
         <Text>Hello modal!</Text>
-        <View style={{flexDirection: 'row', gap: 10,}}>
+        <View style={{ flexDirection: "row", gap: 10 }}>
           <TouchableOpacity style={styles.btn} onPress={paymentTour}>
             <Text style={{ color: "#fff" }}>+</Text>
           </TouchableOpacity>
@@ -158,16 +160,19 @@ const styles = StyleSheet.create({
   mainText: {
     fontSize: 25,
     fontWeight: "900",
+    color: "white",
   },
   smallText: {
     opacity: 0.5,
     paddingTop: 10,
+    color: "white",
   },
   bottom: {
     width: "100%",
     height: 300,
     paddingVertical: 10,
     padding: 20,
+    color: "white",
   },
   btnView: {
     width: "100%",
@@ -197,5 +202,6 @@ const styles = StyleSheet.create({
   text: {
     color: "#C05E2B",
     fontWeight: "900",
+    color: "white",
   },
 });

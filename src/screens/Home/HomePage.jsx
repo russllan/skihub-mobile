@@ -25,7 +25,7 @@ export default HomePage = () => {
       <View style={styles.top}>
         <ImageBackground
           source={{
-            uri: "https://images.unsplash.com/photo-1478700485868-972b69dc3fc4?w=1080&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTV8fHNraXxlbnwwfHwwfHx8MA%3D%3D",
+            uri: "https://plus.unsplash.com/premium_photo-1711572322915-0106714be1af?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjF8fHNraSUyMGRhcmt8ZW58MHx8MHx8fDA%3D",
           }}
           style={{ width: "100%", height: 300 }}
           borderRadius={10}
@@ -103,7 +103,8 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 50,
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0,
-    backgroundColor: "black",
+    backgroundColor: "transparent",
+    color: "white",
     position: "relative",
   },
   container: {

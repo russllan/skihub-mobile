@@ -29,7 +29,7 @@ export function TabNavigator() {
               <AntDesign
                 name="home"
                 size={24}
-                color={focused ? "#C05E2B" : "black"}
+                color={focused ? "#C05E2B" : "white"}
               />
             ),
           }}
@@ -42,7 +42,7 @@ export function TabNavigator() {
               <FontAwesome5
                 name="skiing"
                 size={24}
-                color={focused ? "#C05E2B" : "black"}
+                color={focused ? "#C05E2B" : "white"}
               />
             ),
           }}
@@ -55,7 +55,7 @@ export function TabNavigator() {
               <Fontisto
                 name="heart-alt"
                 size={24}
-                color={focused ? "#C05E2B" : "black"}
+                color={focused ? "#C05E2B" : "white"}
               />
             ),
           }}
@@ -68,7 +68,7 @@ export function TabNavigator() {
               <FontAwesome5
                 name="money-check"
                 size={24}
-                color={focused ? "#C05E2B" : "black"}
+                color={focused ? "#C05E2B" : "white"}
               />
             ),
           }}
@@ -81,7 +81,7 @@ export function TabNavigator() {
               <FontAwesome5
                 name="user"
                 size={24}
-                color={focused ? "#C05E2B" : "black"}
+                color={focused ? "#C05E2B" : "white"}
               />
             ),
           }}
